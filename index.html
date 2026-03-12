@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SB Ride — Pre-Owned Motorcycles | Ghatal, West Bengal</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#080808;--dark:#111;--steel:#1a1a1a;--iron:#252525;--border:#2e2e2e;
+  --chrome:#b0b0b0;--white:#f2ede8;--orange:#ff4d00;--blue:#1a6bff;
+  --muted:#6e6e6e;--green:#22c55e;--red:#ef4444;
+  --fd:'Bebas Neue',sans-serif;--fc:'Barlow Condensed',sans-serif;--fb:'Barlow',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--fb);overflow-x:hidden}
+img{display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--iron)}
+::-webkit-scrollbar-thumb:hover{background:var(--orange)}
+
+/* ── FLOATING WHATSAPP BUTTON ── */
+.wa-float{position:fixed;bottom:32px;left:32px;z-index:999;display:flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:13px 20px 13px 16px;border-radius:50px;box-shadow:0 6px 24px rgba(37,211,102,.45);text-decoration:none;font-family:var(--fc);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;transition:all .28s;animation:waPulse 2.5s infinite}
+.wa-float:hover{background:#1ebe5d;transform:translateY(-3px);box-shadow:0 10px 32px rgba(37,211,102,.55)}
+.wa-float svg{width:22px;height:22px;flex-shrink:0}
+@keyframes waPulse{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.45)}50%{box-shadow:0 6px 32px rgba(37,211,102,.75)}}
+#page-trans{position:fixed;inset:0;z-index:9000;background:var(--black);pointer-events:none;opacity:0;transition:opacity .35s ease}
+#page-trans.show{opacity:1;pointer-events:all}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:28px;right:28px;z-index:9999;font-family:var(--fc);font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;padding:13px 22px;transform:translateY(60px);opacity:0;transition:all .35s cubic-bezier(.34,1.56,.64,1);pointer-events:none;border-left:3px solid var(--green);background:rgba(14,14,14,.97)}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.err{border-left-color:var(--red)}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:800;display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:64px;background:rgba(8,8,8,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(16px);transition:box-shadow .3s}
+nav.scrolled{box-shadow:0 4px 40px rgba(0,0,0,.6)}
+.logo{font-family:var(--fd);font-size:1.75rem;letter-spacing:.08em}
+.logo span{color:var(--orange)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-family:var(--fc);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--orange);transform:scaleX(0);transition:transform .25s}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-scs{font-family:var(--fc);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);border:1px solid rgba(26,107,255,.35);padding:7px 15px;transition:all .25s}
+.nav-scs:hover{background:rgba(26,107,255,.1);border-color:var(--blue);transform:translateY(-1px)}
+.nav-adm{font-family:var(--fc);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:7px 15px;transition:all .25s}
+.nav-adm:hover,.nav-adm.on{color:var(--orange);border-color:var(--orange)}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 52px 80px;position:relative;overflow:hidden}
+.h-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,77,0,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,77,0,.02) 1px,transparent 1px);background-size:72px 72px;pointer-events:none}
+.h-glow{position:absolute;top:15%;right:-8%;width:60vw;height:60vw;background:radial-gradient(ellipse,rgba(255,77,0,.07) 0%,transparent 65%);pointer-events:none;animation:glowPulse 5s ease-in-out infinite}
+@keyframes glowPulse{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+.h-content{position:relative;z-index:1;max-width:700px}
+.h-eye{font-family:var(--fc);font-size:.7rem;letter-spacing:.44em;text-transform:uppercase;color:var(--orange);margin-bottom:22px;display:flex;align-items:center;gap:14px;animation:fadeUp .8s .1s both}
+.h-eye::before{content:'';display:block;width:30px;height:1px;background:var(--orange)}
+.h-title{font-family:var(--fd);font-size:clamp(5rem,10vw,10.5rem);line-height:.88;letter-spacing:.02em;margin-bottom:28px;animation:fadeUp .8s .2s both}
+.h-title .o{color:var(--orange)}
+.h-title .s{-webkit-text-stroke:1.5px var(--chrome);color:transparent}
+.h-sub{font-size:.96rem;line-height:1.88;color:var(--muted);max-width:430px;margin-bottom:40px;animation:fadeUp .8s .3s both}
+.h-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .8s .4s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.btn-f{font-family:var(--fc);font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--black);background:var(--orange);border:2px solid var(--orange);padding:14px 36px;transition:all .28s;display:inline-block;position:relative;overflow:hidden}
+.btn-f::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.12);transform:translateX(-100%);transition:transform .3s}
+.btn-f:hover::before{transform:translateX(0)}
+.btn-f:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,77,0,.35)}
+.btn-o{font-family:var(--fc);font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--chrome);border:2px solid var(--border);padding:14px 36px;transition:all .28s;display:inline-block}
+.btn-o:hover{border-color:var(--chrome);color:var(--white);transform:translateY(-2px)}
+.h-pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:44px;padding-top:36px;border-top:1px solid var(--border);animation:fadeUp .8s .5s both}
+.h-pill{font-family:var(--fc);font-size:.67rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);background:var(--steel);border:1px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:8px;transition:all .25s}
+.h-pill:hover{border-color:var(--border);background:var(--iron)}
+.h-pill .n{font-family:var(--fd);font-size:1.05rem;color:var(--white)}
+.h-pill .no{color:var(--orange)}
+
+/* ── MARQUEE ── */
+.mq{background:var(--orange);padding:12px 0;overflow:hidden;display:flex}
+.mq-t{display:flex;animation:sc 28s linear infinite;white-space:nowrap;flex-shrink:0}
+.mi{font-family:var(--fd);font-size:.88rem;letter-spacing:.18em;color:var(--black);padding:0 28px}
+@keyframes sc{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── SECTIONS ── */
+.sec{padding:100px 52px}
+.ey{font-family:var(--fc);font-size:.67rem;letter-spacing:.42em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.ey::before{content:'';display:block;width:22px;height:1px;background:var(--orange)}
+.st{font-family:var(--fd);font-size:clamp(2.4rem,5vw,4.2rem);letter-spacing:.04em;line-height:.94;margin-bottom:16px}
+.st .s{-webkit-text-stroke:1px var(--chrome);color:transparent}
+
+/* ── FILTER TABS ── */
+.filter-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.filter-row-2{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:34px}
+.ft{font-family:var(--fc);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);background:var(--steel);border:1px solid var(--border);padding:7px 16px;cursor:pointer;transition:all .22s;position:relative;overflow:hidden}
+.ft::before{content:'';position:absolute;inset:0;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .22s;z-index:0}
+.ft span{position:relative;z-index:1}
+.ft:hover{color:var(--chrome);border-color:rgba(255,77,0,.4)}
+.ft.on{color:var(--white);border-color:var(--orange)}
+.ft.on::before{transform:scaleX(1)}
+.ft.on span{color:var(--black)}
+.filter-label{font-family:var(--fc);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:block}
+
+/* ── BIKE GRID ── */
+.b-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+
+/* ── BIKE CARD ── */
+.bc{background:var(--dark);position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.34,1,.64,1),box-shadow .35s}
+.bc:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.6),0 0 0 1px rgba(255,77,0,.15)}
+
+/* ── PHOTO GALLERY ── */
+.bc-gallery{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:var(--steel);contain:strict}
+.gallery-slides{display:flex;height:100%;width:100%;transition:transform .45s cubic-bezier(.77,0,.175,1);will-change:transform}
+.gallery-slide{min-width:100%;width:100%;height:100%;flex-shrink:0;position:relative;overflow:hidden;background:#0d0d0d}
+.gallery-slide img{width:100%;height:100%;object-fit:contain;display:block}
+.bc:hover .gallery-slide img{transform:none}
+.bc-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#181818,#0f0f0f)}
+/* Nav arrows */
+.g-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:30px;height:30px;background:rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:.75rem;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity .2s,background .2s;backdrop-filter:blur(4px)}
+.g-arrow:hover{background:rgba(255,77,0,.85)}
+.bc:hover .g-arrow{opacity:1}
+.g-arrow.prev{left:8px}
+.g-arrow.next{right:8px}
+/* Dots */
+.g-dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:5}
+.g-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.35);transition:all .25s;cursor:pointer}
+.g-dot.on{background:#fff;width:12px;border-radius:3px}
+/* Photo count badge */
+.g-count{position:absolute;bottom:8px;right:10px;z-index:5;font-family:var(--fc);font-size:.58rem;letter-spacing:.12em;background:rgba(0,0,0,.7);color:rgba(255,255,255,.75);padding:3px 7px;backdrop-filter:blur(4px)}
+/* Other overlay badges */
+.bc-badge{position:absolute;top:12px;left:12px;font-family:var(--fc);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;background:var(--orange);color:var(--black);padding:4px 10px;z-index:4}
+.bc-del{position:absolute;top:12px;right:12px;font-family:var(--fc);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(239,68,68,.88);color:#fff;border:none;padding:5px 11px;cursor:pointer;opacity:0;transition:opacity .2s;z-index:4}
+.bc:hover .bc-del{opacity:1}
+.bc-del:hover{background:var(--red)}
+
+.bc-body{padding:20px 22px;border-top:1px solid var(--border)}
+.bc-brand{font-family:var(--fc);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--orange);margin-bottom:4px}
+.bc-name{font-family:var(--fd);font-size:1.52rem;letter-spacing:.04em;margin-bottom:10px;line-height:1}
+.bc-specs{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:16px;font-family:var(--fc);font-size:.65rem;letter-spacing:.07em;color:var(--muted);text-transform:uppercase}
+.bc-bot{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.bc-price{font-family:var(--fd);font-size:1.55rem;line-height:1}
+.bc-old{font-family:var(--fc);font-size:.8rem;color:var(--muted);text-decoration:line-through;margin-left:7px}
+.bc-enq{font-family:var(--fc);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--black);background:var(--orange);border:none;padding:9px 16px;cursor:pointer;transition:all .25s;flex-shrink:0}
+.bc-enq:hover{background:#ff6b2b;transform:translateY(-1px)}
+.empty-s{grid-column:1/-1;text-align:center;padding:80px 40px;color:var(--muted)}
+.empty-s .ei{font-size:3.5rem;margin-bottom:16px;opacity:.22}
+.empty-s h3{font-family:var(--fd);font-size:2rem;color:var(--chrome);margin-bottom:8px}
+
+/* ── LIGHTBOX ── */
+.lb{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);align-items:center;justify-content:center}
+.lb.open{display:flex}
+.lb-inner{position:relative;max-width:90vw;max-height:90vh;display:flex;align-items:center;justify-content:center}
+.lb img{max-width:90vw;max-height:85vh;object-fit:contain;border:1px solid var(--border)}
+.lb-close{position:absolute;top:-40px;right:0;font-size:1.5rem;color:var(--muted);cursor:pointer;transition:color .2s;background:none;border:none;font-family:inherit}
+.lb-close:hover{color:var(--orange)}
+.lb-arr{position:fixed;top:50%;transform:translateY(-50%);z-index:2001;width:48px;height:48px;background:rgba(20,20,20,.9);border:1px solid var(--border);color:var(--white);font-size:1.2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s}
+.lb-arr:hover{background:var(--orange);border-color:var(--orange)}
+.lb-arr.prev{left:20px}
+.lb-arr.next{right:20px}
+.lb-info{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-family:var(--fc);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);background:rgba(8,8,8,.8);padding:8px 18px;backdrop-filter:blur(8px)}
+
+/* ── WHY US ── */
+.why{background:var(--dark)}
+.why-g{display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:start}
+.why-d{font-size:.92rem;line-height:1.9;color:var(--muted);max-width:420px;margin-bottom:38px}
+.fl-list{list-style:none}
+.fl-i{display:flex;gap:18px;padding:21px 0;border-bottom:1px solid var(--border);transition:padding-left .3s,border-color .3s}
+.fl-i:hover{padding-left:8px;border-color:rgba(255,77,0,.3)}
+.fl-n{font-family:var(--fd);font-size:1rem;color:var(--orange);flex-shrink:0;margin-top:3px;min-width:22px}
+.fl-nm{font-family:var(--fc);font-size:.94rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px}
+.fl-d{font-size:.83rem;color:var(--muted);line-height:1.65}
+.sboxes{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.sbox{background:var(--steel);padding:38px 30px;transition:background .3s,transform .3s}
+.sbox:hover{background:var(--iron);transform:translateY(-2px)}
+.sbox:nth-child(3){background:var(--orange)}
+.sbox:nth-child(3):hover{background:#ff6b2b}
+.sbox:nth-child(3) .sn,.sbox:nth-child(3) .sl{color:var(--black)}
+.sn{font-family:var(--fd);font-size:3.2rem;line-height:1}
+.sl{font-family:var(--fc);font-size:.67rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:7px}
+
+/* ── BRANDS ── */
+.brand-wrap{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:60px 52px}
+.brand-lbl{font-family:var(--fc);font-size:.67rem;letter-spacing:.4em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:34px}
+.brand-row{display:flex;flex-wrap:wrap;justify-content:center}
+.br{font-family:var(--fd);font-size:1.2rem;letter-spacing:.14em;color:var(--border);padding:14px 26px;border:1px solid var(--border);margin:-1px;cursor:default;transition:all .28s}
+.br:hover{color:var(--white);border-color:rgba(255,77,0,.5);background:var(--steel);z-index:1;transform:translateY(-1px)}
+
+/* ── SCS ── */
+.scs{background:linear-gradient(135deg,#070b12,#080c16);padding:80px 52px;position:relative;overflow:hidden;border-top:1px solid #111a2a;border-bottom:1px solid #111a2a}
+.scs-glow{position:absolute;top:-20%;right:-8%;width:600px;height:600px;background:radial-gradient(ellipse,rgba(26,107,255,.065) 0%,transparent 65%);pointer-events:none}
+.scs-gbg{position:absolute;inset:0;background-image:linear-gradient(rgba(26,107,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(26,107,255,.022) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.scs-in{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
+.scs-ey{font-family:var(--fc);font-size:.67rem;letter-spacing:.42em;text-transform:uppercase;color:var(--blue);margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.scs-ey::before{content:'';display:block;width:24px;height:1px;background:var(--blue)}
+.scs-t{font-family:var(--fd);font-size:clamp(2.2rem,4.5vw,3.9rem);letter-spacing:.04em;line-height:.93;margin-bottom:18px}
+.scs-t .bl{color:var(--blue)}
+.scs-d{font-size:.91rem;line-height:1.88;color:var(--muted);max-width:530px;margin-bottom:28px}
+.scs-chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-family:var(--fc);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:#4e8dff;background:rgba(26,107,255,.08);border:1px solid rgba(26,107,255,.22);padding:6px 13px;transition:all .25s}
+.chip:hover{background:rgba(26,107,255,.15);border-color:var(--blue)}
+.scs-right{text-align:right}
+.scs-btn{font-family:var(--fd);font-size:1.05rem;letter-spacing:.14em;color:var(--black);background:var(--blue);border:2px solid var(--blue);padding:18px 46px;display:inline-flex;align-items:center;gap:12px;transition:all .28s;white-space:nowrap}
+.scs-btn:hover{background:transparent;color:var(--blue);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,107,255,.3)}
+.scs-note{font-family:var(--fc);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+.scs-note span{color:#4e8dff}
+
+/* ── CONTACT ── */
+.c-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+.c-info{display:flex;flex-direction:column;gap:22px;margin-top:34px}
+.ci{display:flex;align-items:flex-start;gap:14px;transition:transform .25s}
+.ci:hover{transform:translateX(4px)}
+.ci-ic{width:44px;height:44px;background:var(--steel);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;transition:all .25s}
+.ci:hover .ci-ic{background:var(--orange);border-color:var(--orange)}
+.ci-l{font-family:var(--fc);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.ci-v{font-family:var(--fc);font-size:.93rem;font-weight:600;line-height:1.55}
+.open-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--fc);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--green);background:rgba(34,197,94,.09);border:1px solid rgba(34,197,94,.22);padding:7px 15px;margin-top:24px}
+.od{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.cf{display:flex;flex-direction:column;gap:14px}
+.cf label{font-family:var(--fc);font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+.cf input,.cf select,.cf textarea{width:100%;background:var(--steel);border:1px solid var(--border);color:var(--white);padding:13px 15px;font-family:var(--fb);font-size:.87rem;outline:none;transition:border-color .25s,box-shadow .25s}
+.cf input:focus,.cf select:focus,.cf textarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,77,0,.08)}
+.cf select{appearance:none;cursor:pointer}
+.cf textarea{min-height:90px;resize:vertical}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.c-sub{font-family:var(--fd);font-size:1rem;letter-spacing:.15em;color:var(--black);background:var(--orange);border:2px solid var(--orange);padding:14px 38px;cursor:pointer;transition:all .28s;align-self:flex-start;margin-top:4px}
+.c-sub:hover{background:transparent;color:var(--orange);transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,77,0,.25)}
+
+/* ── FOOTER ── */
+footer{background:var(--black);border-top:1px solid var(--border);padding:60px 52px 32px}
+.f-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.f-logo{font-family:var(--fd);font-size:1.9rem;letter-spacing:.08em;margin-bottom:12px}
+.f-logo span{color:var(--orange)}
+.f-about{font-size:.83rem;line-height:1.82;color:var(--muted);margin-bottom:20px}
+.f-hours{font-family:var(--fc);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.f-ct{font-family:var(--fc);font-size:.67rem;letter-spacing:.3em;text-transform:uppercase;color:var(--white);margin-bottom:20px}
+.f-ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.f-ul a{font-size:.82rem;color:var(--muted);transition:color .2s,padding-left .2s;display:flex;align-items:center;gap:7px}
+.f-ul a::before{content:'—';font-size:.52rem;color:var(--border)}
+.f-ul a:hover{color:var(--orange);padding-left:4px}
+.f-ul a.bl{color:#4e8dff}
+.f-ul a.bl:hover{color:var(--blue)}
+.f-bot{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.f-copy{font-family:var(--fc);font-size:.67rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.f-copy span{color:var(--orange)}
+.f-hint{font-family:var(--fc);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--border)}
+
+/* ── ADMIN OVERLAY ── */
+.adm-ov{display:none;position:fixed;inset:0;z-index:1200;background:rgba(0,0,0,0);backdrop-filter:blur(0px);align-items:center;justify-content:center;transition:background .35s,backdrop-filter .35s}
+.adm-ov.open{display:flex;background:rgba(0,0,0,.88);backdrop-filter:blur(10px)}
+.adm-modal{background:var(--dark);border:1px solid var(--border);width:100%;max-width:580px;max-height:92vh;overflow-y:auto;transform:translateY(20px) scale(.98);opacity:0;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .3s}
+.adm-ov.open .adm-modal{transform:translateY(0) scale(1);opacity:1}
+.adm-h{padding:26px 30px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.adm-t{font-family:var(--fd);font-size:1.7rem;letter-spacing:.08em}
+.adm-t span{color:var(--orange)}
+.adm-x{color:var(--muted);font-size:1.3rem;cursor:pointer;transition:color .2s,transform .2s;line-height:1;padding:4px}
+.adm-x:hover{color:var(--orange);transform:rotate(90deg)}
+.adm-b{padding:26px 30px}
+.adm-tabs{display:flex;gap:2px;margin-bottom:26px}
+.adm-tab{font-family:var(--fc);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;background:var(--steel);border:1px solid var(--border);color:var(--muted);padding:10px 4px;cursor:pointer;transition:all .25s;flex:1;text-align:center}
+.adm-tab.on{background:var(--orange);border-color:var(--orange);color:var(--black)}
+.fg{margin-bottom:16px}
+.fl2{font-family:var(--fc);font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+.fi2,.fs2{width:100%;background:var(--steel);border:1px solid var(--border);color:var(--white);padding:11px 13px;font-family:var(--fb);font-size:.87rem;outline:none;transition:border-color .25s,box-shadow .25s}
+.fi2:focus,.fs2:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,77,0,.08)}
+.fs2{appearance:none;cursor:pointer}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* Multi-photo upload zone */
+.uz{border:2px dashed var(--border);padding:24px 20px;text-align:center;cursor:pointer;position:relative;background:var(--steel);transition:all .28s;min-height:90px}
+.uz:hover,.uz.drag{border-color:var(--orange);background:rgba(255,77,0,.04)}
+.uz input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.uz-ic{font-size:1.8rem;margin-bottom:6px;opacity:.38}
+.uz-tx{font-family:var(--fc);font-size:.73rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.uz-ht{font-size:.7rem;color:var(--border);margin-top:3px}
+
+/* Photo preview grid */
+.photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
+.photo-thumb{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--iron);border:1px solid var(--border)}
+.photo-thumb img{width:100%;height:100%;object-fit:cover;transition:opacity .2s}
+.photo-thumb:hover img{opacity:.6}
+.photo-remove{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(239,68,68,.0);font-size:.75rem;color:#fff;cursor:pointer;opacity:0;transition:opacity .2s,background .2s}
+.photo-thumb:hover .photo-remove{opacity:1;background:rgba(239,68,68,.65)}
+.photo-main-badge{position:absolute;top:3px;left:3px;font-family:var(--fc);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;background:var(--orange);color:var(--black);padding:2px 6px;line-height:1.4}
+.photo-count-info{font-family:var(--fc);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-top:8px;text-align:center}
+
+.adm-sub{font-family:var(--fd);font-size:1rem;letter-spacing:.15em;color:var(--black);background:var(--orange);border:2px solid var(--orange);padding:13px 0;cursor:pointer;transition:all .28s;width:100%;margin-top:6px}
+.adm-sub:hover{background:transparent;color:var(--orange)}
+
+/* Manage list */
+.mg-list{display:flex;flex-direction:column;gap:9px}
+.mg-i{display:flex;align-items:center;gap:12px;background:var(--steel);border:1px solid var(--border);padding:11px 13px;transition:border-color .2s}
+.mg-i:hover{border-color:rgba(255,77,0,.2)}
+.mg-th{width:60px;height:45px;object-fit:cover;flex-shrink:0;background:var(--iron);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.mg-info{flex:1;min-width:0}
+.mg-nm{font-family:var(--fc);font-size:.84rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mg-mt{font-family:var(--fc);font-size:.7rem;color:var(--orange);margin-top:2px}
+.mg-del{background:none;border:1px solid var(--red);color:var(--red);font-family:var(--fc);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;padding:7px 13px;cursor:pointer;transition:all .22s;flex-shrink:0}
+.mg-del:hover{background:var(--red);color:#fff}
+.mg-emp{text-align:center;padding:36px;color:var(--muted);font-family:var(--fc);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
+.l-hint{font-size:.84rem;color:var(--muted);line-height:1.78;margin-bottom:22px}
+.l-err{font-family:var(--fc);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--red);display:none;margin-top:-8px;margin-bottom:8px}
+.pw-note{font-size:.72rem;color:var(--muted);text-align:center;margin-top:8px}
+.pw-note strong{color:var(--orange)}
+.confirm-box{background:#120808;border:1px solid var(--red);padding:16px 18px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;animation:fadeUp .3s both}
+.confirm-box span{font-family:var(--fc);font-size:.78rem;letter-spacing:.1em;color:var(--white);flex:1}
+.confirm-box strong{color:var(--orange)}
+.confirm-btns{display:flex;gap:8px;flex-shrink:0}
+.btn-yes{font-family:var(--fc);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:8px 16px;cursor:pointer;transition:all .2s}
+.btn-yes:hover{background:#c53030}
+.btn-no{font-family:var(--fc);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;background:none;color:var(--muted);border:1px solid var(--border);padding:8px 16px;cursor:pointer;transition:all .2s}
+.btn-no:hover{color:var(--white);border-color:var(--chrome)}
+
+/* ── SCROLL FADE ── */
+.fade{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.215,.61,.355,1),transform .65s cubic-bezier(.215,.61,.355,1)}
+.fade.in{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  nav{padding:0 22px}
+  .nav-links{display:none}
+  .hero,.sec{padding:96px 22px 60px}
+  .sec{padding:60px 22px}
+  .scs,.brand-wrap{padding:60px 22px}
+  footer{padding:48px 22px 24px}
+  .b-grid{grid-template-columns:1fr 1fr}
+  .why-g,.c-grid,.scs-in{grid-template-columns:1fr;gap:40px}
+  .scs-right{text-align:left}
+  .sboxes{grid-template-columns:1fr 1fr}
+  .f-grid{grid-template-columns:1fr 1fr;gap:34px}
+  .f-bot{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:600px){
+  .b-grid{grid-template-columns:1fr}
+  .h-pills{gap:8px}
+  .fr2{grid-template-columns:1fr}
+  .photo-grid{grid-template-columns:repeat(3,1fr)}
+  .lb-arr{width:36px;height:36px;font-size:1rem}
+  .lb-arr.prev{left:8px}
+  .lb-arr.next{right:8px}
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE TRANSITION -->
+<div id="page-trans"></div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <button class="lb-arr prev" id="lbPrev">&#8592;</button>
+  <div class="lb-inner">
+    <button class="lb-close" id="lbClose">✕</button>
+    <img id="lbImg" src="" alt="">
+  </div>
+  <button class="lb-arr next" id="lbNext">&#8594;</button>
+  <div class="lb-info" id="lbInfo"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="logo">SB<span>RIDE</span></a>
+  <ul class="nav-links">
+    <li><a href="#inventory">Inventory</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#brands">Brands</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://scsghatal.github.io/SCS/" target="_blank" class="nav-scs">SCS Ghatal ↗</a>
+    <button class="nav-adm" id="adminBtn" onclick="openAdmin()">⚙ Admin</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="h-grid"></div>
+  <div class="h-glow"></div>
+  <div class="h-content">
+    <div class="h-eye">Ghatal, West Bengal — Pre-Owned Motorcycles</div>
+    <h1 class="h-title">FIND YOUR<br><span class="o">PERFECT</span><br><span class="s">RIDE</span></h1>
+    <p class="h-sub">Quality-inspected second-hand motorcycles at honest prices. Every bike personally checked, documented, and ready to ride from day one.</p>
+    <div class="h-btns">
+      <a href="#inventory" class="btn-f">Browse Bikes</a>
+      <a href="#contact" class="btn-o">Contact Us</a>
+    </div>
+    <div class="h-pills">
+      <div class="h-pill"><span class="n no" id="heroCount">0</span>&nbsp;Bikes in Stock</div>
+      <div class="h-pill"><span class="n">5</span>&nbsp;Yrs Experience</div>
+      <div class="h-pill"><span class="n">4.9</span>&nbsp;★ Rating</div>
+      <div class="h-pill">Open&nbsp;<span class="n">Every Day</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq">
+  <div class="mq-t">
+    <span class="mi">SB RIDE</span><span class="mi">◆</span>
+    <span class="mi">CERTIFIED PRE-OWNED</span><span class="mi">◆</span>
+    <span class="mi">FULL INSPECTION</span><span class="mi">◆</span>
+    <span class="mi">FREE TEST RIDE</span><span class="mi">◆</span>
+    <span class="mi">GHATAL · WEST BENGAL</span><span class="mi">◆</span>
+    <span class="mi">OPEN EVERY DAY · 10AM–8PM</span><span class="mi">◆</span>
+    <span class="mi">RC TRANSFER HELP</span><span class="mi">◆</span>
+    <span class="mi">5 YEARS OF TRUST</span><span class="mi">◆</span>
+    <span class="mi">SB RIDE</span><span class="mi">◆</span>
+    <span class="mi">CERTIFIED PRE-OWNED</span><span class="mi">◆</span>
+    <span class="mi">FULL INSPECTION</span><span class="mi">◆</span>
+    <span class="mi">FREE TEST RIDE</span><span class="mi">◆</span>
+    <span class="mi">GHATAL · WEST BENGAL</span><span class="mi">◆</span>
+    <span class="mi">OPEN EVERY DAY · 10AM–8PM</span><span class="mi">◆</span>
+    <span class="mi">RC TRANSFER HELP</span><span class="mi">◆</span>
+    <span class="mi">5 YEARS OF TRUST</span><span class="mi">◆</span>
+  </div>
+</div>
+
+<!-- INVENTORY -->
+<section class="sec" id="inventory">
+  <div class="fade" style="margin-bottom:36px">
+    <div class="ey">What We Have</div>
+    <h2 class="st">AVAILABLE <span class="s">BIKES</span></h2>
+  </div>
+
+  <!-- Category filters -->
+  <div class="fade">
+    <span class="filter-label">Category</span>
+    <div class="filter-row" id="catTabs">
+      <button class="ft on" data-cat="All"><span>All Bikes</span></button>
+      <button class="ft" data-cat="Cruiser"><span>Cruiser</span></button>
+      <button class="ft" data-cat="Sport"><span>Sport</span></button>
+      <button class="ft" data-cat="Adventure"><span>Adventure</span></button>
+      <button class="ft" data-cat="Naked"><span>Naked</span></button>
+      <button class="ft" data-cat="Scooter"><span>Scooter</span></button>
+      <button class="ft" data-cat="Standard"><span>Standard</span></button>
+    </div>
+  </div>
+
+  <!-- Price filters -->
+  <div class="fade">
+    <span class="filter-label" style="margin-top:14px">Price Range</span>
+    <div class="filter-row-2" id="priceTabs">
+      <button class="ft on" data-price="All"><span>Any Price</span></button>
+      <button class="ft" data-price="0-20000"><span>Below ₹20K</span></button>
+      <button class="ft" data-price="20000-30000"><span>₹20K – ₹30K</span></button>
+      <button class="ft" data-price="30000-40000"><span>₹30K – ₹40K</span></button>
+      <button class="ft" data-price="40000-50000"><span>₹40K – ₹50K</span></button>
+      <button class="ft" data-price="50000-99999999"><span>Above ₹50K</span></button>
+    </div>
+  </div>
+
+  <div class="b-grid" id="bikesGrid"></div>
+</section>
+
+<!-- WHY US -->
+<section class="sec why" id="about">
+  <div class="why-g">
+    <div class="fade">
+      <div class="ey">Why Choose Us</div>
+      <h2 class="st">RIDE WITH<br><span class="s">CONFIDENCE</span></h2>
+      <p class="why-d">Every motorcycle we sell has been personally inspected and tested. We don't list a bike unless we'd ride it ourselves. Honest prices, honest people — right here in Ghatal.</p>
+      <ul class="fl-list">
+        <li class="fl-i"><div class="fl-n">01</div><div><div class="fl-nm">Thorough Inspection</div><div class="fl-d">Engine, brakes, electricals, tyres — every system is checked before the bike hits our floor.</div></div></li>
+        <li class="fl-i"><div class="fl-n">02</div><div><div class="fl-nm">Clear History Reports</div><div class="fl-d">Full ownership history and service records shared transparently. No hidden surprises.</div></div></li>
+        <li class="fl-i"><div class="fl-n">03</div><div><div class="fl-nm">Free Test Ride</div><div class="fl-d">Take any bike for a proper spin before you decide. No pressure, no rush.</div></div></li>
+        <li class="fl-i"><div class="fl-n">04</div><div><div class="fl-nm">RC Transfer Help</div><div class="fl-d">Our sister business SCS Ghatal handles all RTO and ownership transfer paperwork — fast and hassle-free.</div></div></li>
+      </ul>
+    </div>
+    <div class="fade">
+      <div class="sboxes">
+        <div class="sbox"><div class="sn" id="stockNum">0<sup style="font-size:1.1rem;color:var(--orange)">+</sup></div><div class="sl">Bikes in Stock</div></div>
+        <div class="sbox"><div class="sn">5</div><div class="sl">Years Experience</div></div>
+        <div class="sbox"><div class="sn">1000<sup style="font-size:.8rem">+</sup></div><div class="sl">Happy Customers</div></div>
+        <div class="sbox"><div class="sn">98<sup style="font-size:1rem;color:var(--orange)">%</sup></div><div class="sl">Satisfaction Rate</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<div class="brand-wrap" id="brands">
+  <div class="brand-lbl fade">Brands We Deal In</div>
+  <div class="brand-row fade">
+    <div class="br">ROYAL ENFIELD</div><div class="br">KTM</div>
+    <div class="br">BAJAJ</div><div class="br">HONDA</div>
+    <div class="br">YAMAHA</div><div class="br">HERO</div>
+    <div class="br">TVS</div><div class="br">SUZUKI</div>
+    <div class="br">KAWASAKI</div><div class="br">HARLEY-DAVIDSON</div>
+  </div>
+</div>
+
+<!-- SCS -->
+<section class="scs">
+  <div class="scs-glow"></div>
+  <div class="scs-gbg"></div>
+  <div class="scs-in fade">
+    <div>
+      <div class="scs-ey">Our Sister Business · Ghatal · Est. 2016</div>
+      <h2 class="scs-t">ALSO VISIT<br><span class="bl">SAYAN COMPUTER</span><br>SERVICES</h2>
+      <p class="scs-d">Bought a bike? Get all documents sorted at SCS — our trusted sister business in Ghatal. Driving licences, ownership transfers, vehicle registration, and insurance. 15+ years of experience, same-day processing available.</p>
+      <div class="scs-chips">
+        <span class="chip">🪪 Driving Licence</span>
+        <span class="chip">📋 Ownership Transfer</span>
+        <span class="chip">🚗 Vehicle Registration</span>
+        <span class="chip">🛡️ Insurance Upto 12% Off</span>
+        <span class="chip">📝 All RTO Works</span>
+      </div>
+    </div>
+    <div class="scs-right">
+      <a href="https://scsghatal.github.io/SCS/" target="_blank" rel="noopener" class="scs-btn">VISIT SCS GHATAL ↗</a>
+      <p class="scs-note">Ghatal, West Bengal · <span>15+ Years Experience</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec" id="contact">
+  <div class="c-grid">
+    <div class="fade">
+      <div class="ey">Get In Touch</div>
+      <h2 class="st">VISIT OUR<br><span class="s">SHOWROOM</span></h2>
+      <div class="c-info">
+        <div class="ci"><div class="ci-ic">📍</div><div><div class="ci-l">Showroom Address</div><div class="ci-v">Ghatal, West Bengal, India</div></div></div>
+        <div class="ci"><div class="ci-ic">📞</div><div><div class="ci-l">Call Us</div><div class="ci-v"><a href="tel:+919647044663" style="color:var(--white);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--white)'">+91 96470 44663</a></div></div></div>
+        <div class="ci"><div class="ci-ic" style="color:#25D366;font-size:1.3rem">💬</div><div><div class="ci-l">WhatsApp</div><div class="ci-v"><a href="https://wa.me/919475336021" target="_blank" style="color:#25D366;text-decoration:none;font-weight:500;transition:opacity .2s" onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'">+91 94753 36021 — Chat Now ↗</a></div></div></div>
+        <div class="ci"><div class="ci-ic">🕐</div><div><div class="ci-l">Working Hours</div><div class="ci-v">Open Every Day<br>10:00 AM – 8:00 PM</div></div></div>
+      </div>
+      <div class="open-badge"><div class="od"></div>Open Today · 10 AM – 8 PM</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-grid">
+    <div>
+      <div class="f-logo">SB<span>RIDE</span></div>
+      <p class="f-about">Your trusted destination for quality pre-owned motorcycles in Ghatal, West Bengal. Personally inspected, fairly priced, properly documented.</p>
+      <p class="f-hours">📍 Ghatal, West Bengal · Open Every Day · 10 AM – 8 PM</p>
+      <p class="f-hours" style="margin-top:8px">📞 <a href="tel:+919647044663" style="color:var(--chrome);text-decoration:none">+91 96470 44663</a></p>
+      <p class="f-hours" style="margin-top:4px">💬 <a href="https://wa.me/919475336021" target="_blank" style="color:#25D366;text-decoration:none">WhatsApp: +91 94753 36021</a></p>
+    </div>
+    <div>
+      <div class="f-ct">Quick Links</div>
+      <ul class="f-ul">
+        <li><a href="#inventory">Browse Inventory</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#brands">Brands</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-ct">Our Services</div>
+      <ul class="f-ul">
+        <li><a href="#">Bike Inspection</a></li>
+        <li><a href="#">Exchange / Trade-In</a></li>
+        <li><a href="#">RC Transfer Help</a></li>
+        <li><a href="#">Free Test Ride</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-ct">Sister Business</div>
+      <ul class="f-ul">
+        <li><a href="https://scsghatal.github.io/SCS/" target="_blank" class="bl">↗ SCS Ghatal</a></li>
+        <li><a href="https://scsghatal.github.io/SCS/" target="_blank" class="bl">Driving Licence</a></li>
+        <li><a href="https://scsghatal.github.io/SCS/" target="_blank" class="bl">Ownership Transfer</a></li>
+        <li><a href="https://scsghatal.github.io/SCS/" target="_blank" class="bl">Vehicle Registration</a></li>
+        <li><a href="https://scsghatal.github.io/SCS/" target="_blank" class="bl">Insurance (12% Off)</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="f-bot">
+    <div class="f-copy">© 2025 <span>SB Ride</span> — Ghatal, West Bengal. All Rights Reserved.</div>
+    <div class="f-hint">Admin Panel: Click ⚙ in the top nav</div>
+  </div>
+</footer>
+
+<!-- ADMIN OVERLAY -->
+<div class="adm-ov" id="admOv">
+  <div class="adm-modal">
+    <!-- LOGIN -->
+    <div id="loginPane">
+      <div class="adm-h">
+        <div class="adm-t">ADMIN <span>LOGIN</span></div>
+        <button class="adm-x" onclick="closeAdmin()">✕</button>
+      </div>
+      <div class="adm-b">
+        <p class="l-hint">Enter the admin password to add new bikes or remove sold ones from the inventory.</p>
+        <div class="fg"><label class="fl2">Password</label><input class="fi2" type="password" id="pwIn" placeholder="Enter password…"></div>
+        <div class="l-err" id="lErr">Incorrect password. Try again.</div>
+        <button class="adm-sub" id="loginBtn">LOGIN →</button>
+        <p class="pw-note">To change password, see the instructions.</p>
+      </div>
+    </div>
+    <!-- LOGGED IN -->
+    <div id="loggedPane" style="display:none">
+      <div class="adm-h">
+        <div class="adm-t">ADMIN <span>PANEL</span></div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button id="logoutBtn" style="font-family:var(--fc);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;background:none;border:1px solid var(--border);color:var(--muted);padding:6px 13px;cursor:pointer;transition:color .2s,border-color .2s">LOGOUT</button>
+          <button class="adm-x" onclick="closeAdmin()">✕</button>
+        </div>
+      </div>
+      <div class="adm-b">
+        <div class="adm-tabs">
+          <button class="adm-tab on" id="tabAddBtn">➕ Add Bike</button>
+          <button class="adm-tab" id="tabManageBtn">🗑 Delete</button>
+          <button class="adm-tab" id="tabPwBtn">🔑 Password</button>
+        </div>
+        <!-- ADD TAB -->
+        <div id="tabAdd">
+          <div class="fg">
+            <label class="fl2">Bike Photos <span style="color:var(--orange)">(Upload as many as you want)</span></label>
+            <div class="uz" id="uz">
+              <input type="file" accept="image/*" id="pfIn" multiple>
+              <div class="uz-ic">📸</div>
+              <div class="uz-tx">Click to select or drag & drop multiple photos</div>
+              <div class="uz-ht">JPG, PNG, WEBP — up to 20 photos, max 5MB each · First photo = cover</div>
+            </div>
+            <div class="photo-grid" id="photoGrid"></div>
+            <div class="photo-count-info" id="photoCountInfo"></div>
+          </div>
+          <div class="fr2">
+            <div class="fg"><label class="fl2">Brand</label><input class="fi2" id="fBr" placeholder="e.g. Royal Enfield"></div>
+            <div class="fg"><label class="fl2">Model Name</label><input class="fi2" id="fMo" placeholder="e.g. Classic 350"></div>
+          </div>
+          <div class="fr2">
+            <div class="fg"><label class="fl2">Year</label><input class="fi2" id="fYr" type="number" placeholder="2021" min="2000" max="2030"></div>
+            <div class="fg"><label class="fl2">Category</label>
+              <select class="fs2" id="fCt">
+                <option>Cruiser</option><option>Sport</option><option>Adventure</option>
+                <option>Naked</option><option>Scooter</option><option>Standard</option>
+              </select>
+            </div>
+          </div>
+          <div class="fr2">
+            <div class="fg"><label class="fl2">Engine CC</label><input class="fi2" id="fCC" placeholder="e.g. 350cc"></div>
+            <div class="fg"><label class="fl2">KM Driven</label><input class="fi2" id="fKM" placeholder="e.g. 14,200 km"></div>
+          </div>
+          <div class="fr2">
+            <div class="fg"><label class="fl2">Asking Price ₹</label><input class="fi2" id="fPr" placeholder="e.g. 125000" type="number"></div>
+            <div class="fg"><label class="fl2">Old Price ₹ (optional)</label><input class="fi2" id="fOP" placeholder="e.g. 155000" type="number"></div>
+          </div>
+          <div class="fg"><label class="fl2">Badge (optional)</label><input class="fi2" id="fBd" placeholder="e.g. HOT DEAL · NEW ARRIVAL · CERTIFIED"></div>
+          <button class="adm-sub" id="addBikeBtn">ADD TO INVENTORY →</button>
+        </div>
+        <!-- MANAGE TAB -->
+        <div id="tabManage" style="display:none">
+          <div class="mg-list" id="mgList"></div>
+        </div>
+        <!-- PASSWORD TAB -->
+        <div id="tabPw" style="display:none">
+          <div style="background:rgba(255,77,0,.06);border:1px solid rgba(255,77,0,.2);padding:16px 18px;margin-bottom:22px">
+            <div style="font-family:var(--fc);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:8px">🔒 How to change your password</div>
+            <div style="font-size:.82rem;color:var(--muted);line-height:1.75">
+              1. Type your new password below and click <strong style="color:var(--white)">GENERATE HASH</strong><br>
+              2. Copy the hash that appears<br>
+              3. Open the HTML file in a text editor (Notepad)<br>
+              4. Find the line: <code style="background:var(--iron);padding:2px 6px;color:var(--orange);font-size:.78rem">var PASS_HASH = '...'</code><br>
+              5. Replace the value inside quotes with your new hash<br>
+              6. Save the file — done!
+            </div>
+          </div>
+          <div class="fg">
+            <label class="fl2">Type Your New Password</label>
+            <div style="display:flex;gap:8px">
+              <input class="fi2" type="password" id="pwGenIn" placeholder="Enter new password…" style="flex:1">
+              <button id="pwToggleBtn" style="background:var(--steel);border:1px solid var(--border);color:var(--muted);padding:0 14px;font-size:1rem;cursor:pointer;transition:all .2s;flex-shrink:0" title="Show/hide password">👁</button>
+            </div>
+          </div>
+          <div class="fg">
+            <label class="fl2">Confirm Password</label>
+            <input class="fi2" type="password" id="pwGenConfirm" placeholder="Re-enter password…">
+          </div>
+          <!-- Strength bar -->
+          <div id="pwStrengthWrap" style="margin-bottom:16px;display:none">
+            <div style="display:flex;justify-content:space-between;margin-bottom:5px">
+              <span style="font-family:var(--fc);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">Password Strength</span>
+              <span style="font-family:var(--fc);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase" id="pwStrengthLabel"></span>
+            </div>
+            <div style="height:4px;background:var(--iron);border-radius:2px">
+              <div id="pwStrengthBar" style="height:100%;width:0%;border-radius:2px;transition:width .3s,background .3s"></div>
+            </div>
+            <div id="pwStrengthTips" style="font-size:.75rem;color:var(--muted);margin-top:8px;line-height:1.6"></div>
+          </div>
+          <button class="adm-sub" id="pwGenBtn">GENERATE HASH →</button>
+          <!-- Result box -->
+          <div id="pwGenResult" style="display:none;margin-top:18px">
+            <label class="fl2">Your New Password Hash — Copy This</label>
+            <div style="display:flex;gap:8px;align-items:stretch">
+              <div id="pwHashOut" style="flex:1;background:var(--black);border:1px solid var(--orange);color:var(--orange);padding:12px 14px;font-family:monospace;font-size:.78rem;word-break:break-all;letter-spacing:.05em;line-height:1.6"></div>
+              <button id="pwCopyBtn" style="background:var(--orange);color:var(--black);border:none;padding:0 16px;font-family:var(--fc);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;flex-shrink:0;transition:all .2s">COPY</button>
+            </div>
+            <div style="font-size:.75rem;color:var(--muted);margin-top:10px;line-height:1.7">
+              ✅ Hash generated successfully. Now open your HTML file in Notepad, find <code style="color:var(--orange);background:var(--iron);padding:1px 5px">PASS_HASH = '</code> and replace the value with the hash above.
+            </div>
+          </div>
+          <div id="pwGenErr" style="display:none;font-family:var(--fc);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--red);margin-top:10px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLOATING WHATSAPP BUTTON -->
+<a href="https://wa.me/919475336021" target="_blank" class="wa-float" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.857L.057 23.428a.75.75 0 00.918.943l5.71-1.498A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.717 9.717 0 01-4.953-1.355l-.355-.211-3.688.968.984-3.595-.232-.371A9.718 9.718 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+  WhatsApp Us
+</a>
+
+<script>
+// ── SUPABASE CONFIG ──
+var SB_URL = 'https://fxahdyolxmpbllpecvwa.supabase.co';
+var SB_KEY = 'sb_publishable_nchzIiOpIYTTv1OnlkbXQg_ejptlMAH';
+var SB_BUCKET = 'bike-photos';
+var PASS_HASH = 'de8323054ae6924247cd4c520bf5414fdeb3db05'; // = admin123
+var bikes = [];
+var pendingPhotos = []; // array of {file, preview} objects
+var filterCat = 'All';
+var filterPrice = 'All';
+var loggedIn = false;
+var pendingDeleteId = null;
+
+// ── LIGHTBOX STATE ──
+var lbPhotos = [];
+var lbIndex = 0;
+
+// ── SUPABASE HELPERS ──
+function sbHeaders() {
+  return {
+    'apikey': SB_KEY,
+    'Authorization': 'Bearer ' + SB_KEY,
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
+  };
+}
+
+async function loadFromSupabase() {
+  try {
+    var res = await fetch(SB_URL + '/rest/v1/bikes?order=created_at.desc', {
+      headers: sbHeaders()
+    });
+    if (!res.ok) throw new Error('Load failed');
+    var data = await res.json();
+    bikes = data.map(function(b) {
+      return {
+        id: b.id,
+        brand: b.brand,
+        model: b.model,
+        year: b.year,
+        cat: b.cat,
+        cc: b.cc,
+        km: b.km,
+        price: b.price,
+        oldP: b.old_price || '',
+        badge: b.badge || '',
+        photos: b.photos || []
+      };
+    });
+    render();
+  } catch(e) {
+    console.error('Supabase load error:', e);
+    showToast('Could not load bikes. Check connection.', 'err');
+  }
+}
+
+async function uploadPhoto(file) {
+  var ext = file.name.split('.').pop();
+  var fileName = Date.now() + '_' + Math.random().toString(36).substr(2,6) + '.' + ext;
+  var res = await fetch(SB_URL + '/storage/v1/object/' + SB_BUCKET + '/' + fileName, {
+    method: 'POST',
+    headers: {
+      'apikey': SB_KEY,
+      'Authorization': 'Bearer ' + SB_KEY,
+      'Content-Type': file.type,
+      'Cache-Control': '3600'
+    },
+    body: file
+  });
+  if (!res.ok) throw new Error('Upload failed: ' + file.name);
+  return SB_URL + '/storage/v1/object/public/' + SB_BUCKET + '/' + fileName;
+}
+
+async function saveToSupabase(bike) {
+  var res = await fetch(SB_URL + '/rest/v1/bikes', {
+    method: 'POST',
+    headers: sbHeaders(),
+    body: JSON.stringify({
+      id: bike.id,
+      brand: bike.brand,
+      model: bike.model,
+      year: bike.year ? parseInt(bike.year) : null,
+      cat: bike.cat,
+      cc: bike.cc,
+      km: bike.km,
+      price: bike.price || 0,
+      old_price: bike.oldP ? parseInt(bike.oldP) : null,
+      badge: bike.badge,
+      photos: bike.photos
+    })
+  });
+  if (!res.ok) {
+    var err = await res.text();
+    throw new Error('Save failed: ' + err);
+  }
+}
+
+async function deleteFromSupabase(bikeId) {
+  // Find bike photos first
+  var bike = getBikeById(bikeId);
+  if (bike && bike.photos) {
+    for (var i = 0; i < bike.photos.length; i++) {
+      var url = bike.photos[i];
+      var fileName = url.split('/' + SB_BUCKET + '/').pop();
+      if (fileName) {
+        await fetch(SB_URL + '/storage/v1/object/' + SB_BUCKET + '/' + fileName, {
+          method: 'DELETE',
+          headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY }
+        });
+      }
+    }
+  }
+  var res = await fetch(SB_URL + '/rest/v1/bikes?id=eq.' + bikeId, {
+    method: 'DELETE',
+    headers: sbHeaders()
+  });
+  if (!res.ok) throw new Error('Delete failed');
+}
+
+// ── PRICE PARSING ──
+function parsePrice(str) {
+  if (!str) return 0;
+  var n = parseInt(String(str).replace(/[^0-9]/g, ''), 10);
+  return isNaN(n) ? 0 : n;
+}
+function formatPrice(num) {
+  var n = parseInt(num, 10);
+  if (isNaN(n)) return num;
+  return n.toLocaleString('en-IN');
+}
+
+// ── PRICE RANGE FILTER ──
+function priceInRange(bike, range) {
+  if (range === 'All') return true;
+  var parts = range.split('-');
+  var lo = parseInt(parts[0], 10);
+  var hi = parseInt(parts[1], 10);
+  var p = parsePrice(bike.price);
+  return p >= lo && p <= hi;
+}
+
+// ── PLACEHOLDER SVG ──
+var mSVG = '<svg viewBox="0 0 400 200" fill="none" style="width:62%;opacity:.3"><circle cx="90" cy="145" r="48" stroke="#555" stroke-width="6"/><circle cx="90" cy="145" r="32" stroke="#444" stroke-width="2"/><circle cx="90" cy="145" r="11" fill="#1a1a1a" stroke="#666" stroke-width="2"/><circle cx="305" cy="145" r="48" stroke="#555" stroke-width="6"/><circle cx="305" cy="145" r="32" stroke="#444" stroke-width="2"/><circle cx="305" cy="145" r="11" fill="#1a1a1a" stroke="#666" stroke-width="2"/><path d="M100 145 L160 133" stroke="#555" stroke-width="7" stroke-linecap="round"/><path d="M118 140 L185 78 L235 70 L268 88 L275 138 L128 143Z" fill="#111" stroke="#444" stroke-width="2"/><path d="M195 68 L255 60 L265 82 L205 90Z" fill="#ff4d00" stroke="#cc3300" stroke-width="1.5"/><path d="M278 88 L308 140 L320 143" stroke="#555" stroke-width="6" stroke-linecap="round"/><ellipse cx="310" cy="105" rx="14" ry="10" fill="#1a1a1a" stroke="#ff4d00" stroke-width="1.5"/></svg>';
+
+// ── RENDER BIKES ──
+function render() {
+  var g = document.getElementById('bikesGrid');
+  var list = bikes.filter(function(b) {
+    var catOk = filterCat === 'All' || b.cat === filterCat;
+    var priceOk = priceInRange(b, filterPrice);
+    return catOk && priceOk;
+  });
+  var n = bikes.length;
+  document.getElementById('heroCount').textContent = n;
+  document.getElementById('stockNum').innerHTML = n + '<sup style="font-size:1.1rem;color:var(--orange)">+</sup>';
+
+  if (!list.length) {
+    g.innerHTML = '<div class="empty-s"><div class="ei">🏍️</div><h3>NO BIKES FOUND</h3><p>Try adjusting the category or price filter.</p></div>';
+    return;
+  }
+
+  var html = '';
+  for (var i = 0; i < list.length; i++) {
+    var b = list[i];
+    var photos = b.photos && b.photos.length ? b.photos : (b.photo ? [b.photo] : []);
+    var hasPhotos = photos.length > 0;
+
+    // Gallery slides
+    var slidesHtml = '';
+    if (hasPhotos) {
+      for (var j = 0; j < photos.length; j++) {
+        slidesHtml += '<div class="gallery-slide"><img src="' + photos[j] + '" alt="' + b.brand + ' ' + b.model + ' photo ' + (j+1) + '" loading="lazy"></div>';
+      }
+    } else {
+      slidesHtml = '<div class="gallery-slide"><div class="bc-ph">' + mSVG + '</div></div>';
+    }
+
+    // Dots (only if >1 photo)
+    var dotsHtml = '';
+    if (photos.length > 1) {
+      for (var k = 0; k < photos.length; k++) {
+        dotsHtml += '<div class="g-dot' + (k === 0 ? ' on' : '') + '" data-idx="' + k + '"></div>';
+      }
+    }
+
+    var arrowsHtml = photos.length > 1 ?
+      '<button class="g-arrow prev" data-id="' + b.id + '" data-dir="-1">&#8592;</button><button class="g-arrow next" data-id="' + b.id + '" data-dir="1">&#8594;</button>' : '';
+
+    var countHtml = photos.length > 1 ? '<div class="g-count">1 / ' + photos.length + '</div>' : '';
+    var badgeHtml = b.badge ? '<div class="bc-badge">' + b.badge + '</div>' : '';
+    var delHtml = loggedIn ? '<button class="bc-del" data-id="' + b.id + '">🗑 REMOVE</button>' : '';
+
+    var specsHtml = '';
+    if (b.year) specsHtml += '<span>📅 ' + b.year + '</span>';
+    if (b.km) specsHtml += '<span>📍 ' + b.km + '</span>';
+    if (b.cc) specsHtml += '<span>⚙ ' + b.cc + '</span>';
+    specsHtml += '<span>🏷 ' + b.cat + '</span>';
+
+    var priceDisplay = '₹' + formatPrice(b.price);
+    var oldPHtml = b.oldP ? '<span class="bc-old">₹' + formatPrice(b.oldP) + '</span>' : '';
+
+    html += '<div class="bc fade" style="transition-delay:' + (i * 50) + 'ms" data-bike-id="' + b.id + '">';
+    html += '<div class="bc-gallery" data-gallery-id="' + b.id + '">';
+    html += '<div class="gallery-slides" id="slides-' + b.id + '">' + slidesHtml + '</div>';
+    if (photos.length > 1) html += '<div class="g-dots" id="dots-' + b.id + '">' + dotsHtml + '</div>';
+    html += countHtml + arrowsHtml + badgeHtml + delHtml;
+    html += '</div>';
+    html += '<div class="bc-body">';
+    html += '<div class="bc-brand">' + b.brand + '</div>';
+    html += '<div class="bc-name">' + b.model + '</div>';
+    html += '<div class="bc-specs">' + specsHtml + '</div>';
+    html += '<div class="bc-bot"><div><span class="bc-price">' + priceDisplay + '</span>' + oldPHtml + '</div>';
+    html += '<button class="bc-enq" data-name="' + b.brand + ' ' + b.model + '">Enquire</button></div>';
+    html += '</div></div>';
+  }
+  g.innerHTML = html;
+
+  setTimeout(function() {
+    var cards = document.querySelectorAll('#bikesGrid .fade');
+    for (var i = 0; i < cards.length; i++) cards[i].classList.add('in');
+  }, 40);
+}
+
+// ── GALLERY SLIDE ──
+function getGalleryState(bikeId) {
+  var el = document.getElementById('slides-' + bikeId);
+  if (!el) return 0;
+  var cur = el.getAttribute('data-cur') || '0';
+  return parseInt(cur, 10);
+}
+function setGallerySlide(bikeId, idx) {
+  var el = document.getElementById('slides-' + bikeId);
+  if (!el) return;
+  var bike = getBikeById(bikeId);
+  if (!bike) return;
+  var photos = bike.photos && bike.photos.length ? bike.photos : (bike.photo ? [bike.photo] : []);
+  if (idx < 0) idx = photos.length - 1;
+  if (idx >= photos.length) idx = 0;
+  el.style.transform = 'translateX(-' + (idx * 100) + '%)';
+  el.setAttribute('data-cur', idx);
+
+  // update dots
+  var dots = document.querySelectorAll('#dots-' + bikeId + ' .g-dot');
+  for (var i = 0; i < dots.length; i++) {
+    dots[i].classList.toggle('on', i === idx);
+  }
+
+  // update count
+  var gallery = el.parentElement;
+  var countEl = gallery.querySelector('.g-count');
+  if (countEl) countEl.textContent = (idx + 1) + ' / ' + photos.length;
+}
+
+function getBikeById(id) {
+  for (var i = 0; i < bikes.length; i++) {
+    if (bikes[i].id === id) return bikes[i];
+  }
+  return null;
+}
+
+// ── LIGHTBOX ──
+function openLightbox(bikeId, startIdx) {
+  var bike = getBikeById(bikeId);
+  if (!bike) return;
+  lbPhotos = bike.photos && bike.photos.length ? bike.photos : (bike.photo ? [bike.photo] : []);
+  if (!lbPhotos.length) return;
+  lbIndex = startIdx || 0;
+  updateLightbox();
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function updateLightbox() {
+  document.getElementById('lbImg').src = lbPhotos[lbIndex];
+  document.getElementById('lbInfo').textContent = (lbIndex + 1) + ' / ' + lbPhotos.length;
+}
+function lbMove(dir) {
+  lbIndex += dir;
+  if (lbIndex < 0) lbIndex = lbPhotos.length - 1;
+  if (lbIndex >= lbPhotos.length) lbIndex = 0;
+  // smooth swap
+  var img = document.getElementById('lbImg');
+  img.style.opacity = '0';
+  img.style.transform = 'scale(.96)';
+  setTimeout(function() {
+    img.src = lbPhotos[lbIndex];
+    img.style.transition = 'opacity .3s,transform .3s';
+    img.style.opacity = '1';
+    img.style.transform = 'scale(1)';
+    document.getElementById('lbInfo').textContent = (lbIndex + 1) + ' / ' + lbPhotos.length;
+  }, 150);
+}
+
+document.getElementById('lbClose').addEventListener('click', closeLightbox);
+document.getElementById('lb').addEventListener('click', function(e) { if (e.target === this) closeLightbox(); });
+document.getElementById('lbPrev').addEventListener('click', function() { lbMove(-1); });
+document.getElementById('lbNext').addEventListener('click', function() { lbMove(1); });
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lb').classList.contains('open')) return;
+  if (e.key === 'ArrowLeft') lbMove(-1);
+  if (e.key === 'ArrowRight') lbMove(1);
+  if (e.key === 'Escape') closeLightbox();
+});
+
+// ── MANAGE LIST ──
+function renderMg() {
+  var l = document.getElementById('mgList');
+  if (!bikes.length) { l.innerHTML = '<div class="mg-emp">No bikes in inventory</div>'; return; }
+  var html = '';
+  for (var i = 0; i < bikes.length; i++) {
+    var b = bikes[i];
+    var photos = b.photos && b.photos.length ? b.photos : (b.photo ? [b.photo] : []);
+    var thHtml = photos.length ? '<img class="mg-th" src="' + photos[0] + '" alt="">' : '<div class="mg-th">🏍️</div>';
+    html += '<div class="mg-i">' + thHtml;
+    html += '<div class="mg-info"><div class="mg-nm">' + b.brand + ' ' + b.model + '</div>';
+    html += '<div class="mg-mt">₹' + formatPrice(b.price) + ' · ' + (b.year || '—') + ' · ' + b.cat;
+    if (photos.length > 1) html += ' · ' + photos.length + ' photos';
+    html += '</div></div>';
+    html += '<button class="mg-del" data-id="' + b.id + '">🗑 DELETE</button></div>';
+  }
+  l.innerHTML = html;
+}
+
+// ── ADD BIKE ──
+async function addBike() {
+  var br = document.getElementById('fBr').value.trim();
+  var mo = document.getElementById('fMo').value.trim();
+  var pr = document.getElementById('fPr').value.trim();
+  if (!br || !mo || !pr) { showToast('Brand, Model & Price are required.', 'err'); return; }
+
+  var btn = document.getElementById('addBikeBtn');
+  btn.textContent = 'UPLOADING PHOTOS…';
+  btn.disabled = true;
+
+  try {
+    // Upload all photos to Supabase Storage
+    var photoUrls = [];
+    for (var i = 0; i < pendingPhotos.length; i++) {
+      showToast('Uploading photo ' + (i+1) + ' of ' + pendingPhotos.length + '…', 'ok');
+      var url = await uploadPhoto(pendingPhotos[i].file);
+      photoUrls.push(url);
+    }
+
+    var bike = {
+      id: Date.now().toString(),
+      brand: br, model: mo,
+      price: parsePrice(pr),
+      oldP: document.getElementById('fOP').value.trim() ? parsePrice(document.getElementById('fOP').value.trim()) : '',
+      year: document.getElementById('fYr').value.trim(),
+      cat: document.getElementById('fCt').value,
+      cc: document.getElementById('fCC').value.trim(),
+      km: document.getElementById('fKM').value.trim(),
+      badge: document.getElementById('fBd').value.trim(),
+      photos: photoUrls
+    };
+
+    btn.textContent = 'SAVING…';
+    await saveToSupabase(bike);
+    bikes.unshift(bike);
+    render();
+    resetForm();
+    showToast(br + ' ' + mo + ' added with ' + photoUrls.length + ' photo(s)!', 'ok');
+  } catch(e) {
+    showToast('Error: ' + e.message, 'err');
+    console.error(e);
+  } finally {
+    btn.textContent = 'ADD TO INVENTORY →';
+    btn.disabled = false;
+  }
+}
+
+function resetForm() {
+  var ids = ['fBr','fMo','fYr','fCC','fKM','fPr','fOP','fBd'];
+  for (var i = 0; i < ids.length; i++) document.getElementById(ids[i]).value = '';
+  document.getElementById('fCt').selectedIndex = 0;
+  document.getElementById('pfIn').value = '';
+  pendingPhotos = [];
+  document.getElementById('photoGrid').innerHTML = '';
+  document.getElementById('photoCountInfo').textContent = '';
+}
+
+// ── MULTI PHOTO HANDLING ──
+function processFiles(files) {
+  var remaining = 20 - pendingPhotos.length;
+  if (remaining <= 0) { showToast('Maximum 20 photos allowed.', 'err'); return; }
+  var toProcess = Math.min(files.length, remaining);
+  var loaded = 0;
+  for (var i = 0; i < toProcess; i++) {
+    (function(file) {
+      if (!file.type.startsWith('image/')) return;
+      if (file.size > 5242880) { showToast(file.name + ' is too large (max 5MB).', 'err'); return; }
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        pendingPhotos.push({ file: file, preview: e.target.result });
+        loaded++;
+        if (loaded === toProcess) updatePhotoGrid();
+      };
+      reader.readAsDataURL(file);
+    })(files[i]);
+  }
+}
+
+function updatePhotoGrid() {
+  var grid = document.getElementById('photoGrid');
+  var info = document.getElementById('photoCountInfo');
+  if (!pendingPhotos.length) { grid.innerHTML = ''; info.textContent = ''; return; }
+  var html = '';
+  for (var i = 0; i < pendingPhotos.length; i++) {
+    html += '<div class="photo-thumb" data-pi="' + i + '">';
+    html += '<img src="' + pendingPhotos[i].preview + '" alt="Photo ' + (i+1) + '">';
+    if (i === 0) html += '<div class="photo-main-badge">Cover</div>';
+    html += '<div class="photo-remove" data-pi="' + i + '">✕ Remove</div>';
+    html += '</div>';
+  }
+  grid.innerHTML = html;
+  info.textContent = pendingPhotos.length + ' photo' + (pendingPhotos.length > 1 ? 's' : '') + ' selected · First photo is the cover';
+}
+
+document.getElementById('photoGrid').addEventListener('click', function(e) {
+  var rem = e.target.closest('.photo-remove');
+  if (rem) {
+    var idx = parseInt(rem.getAttribute('data-pi'), 10);
+    pendingPhotos.splice(idx, 1);
+    updatePhotoGrid();
+  }
+});
+
+// ── DELETE ──
+function showConfirm(id) {
+  pendingDeleteId = id;
+  var b = getBikeById(id);
+  if (!b) return;
+  var old = document.getElementById('confirmBox');
+  if (old) old.remove();
+  var box = document.createElement('div');
+  box.id = 'confirmBox';
+  box.className = 'confirm-box';
+  box.innerHTML = '<span>Remove <strong>' + b.brand + ' ' + b.model + '</strong> from inventory?</span>'
+    + '<div class="confirm-btns">'
+    + '<button class="btn-yes" id="btnYes">YES, DELETE</button>'
+    + '<button class="btn-no" id="btnNo">CANCEL</button>'
+    + '</div>';
+  var list = document.getElementById('mgList');
+  list.insertBefore(box, list.firstChild);
+  document.getElementById('btnYes').onclick = function() { doDelete(pendingDeleteId); };
+  document.getElementById('btnNo').onclick = function() {
+    var c = document.getElementById('confirmBox');
+    if (c) c.remove();
+    pendingDeleteId = null;
+  };
+}
+
+async function doDelete(id) {
+  var name = '';
+  for (var i = 0; i < bikes.length; i++) {
+    if (bikes[i].id === id) { name = bikes[i].brand + ' ' + bikes[i].model; break; }
+  }
+  var btn = document.getElementById('btnYes');
+  if (btn) { btn.textContent = 'DELETING…'; btn.disabled = true; }
+  try {
+    await deleteFromSupabase(id);
+    bikes = bikes.filter(function(b) { return b.id !== id; });
+    render(); renderMg();
+    showToast(name + ' removed.', 'ok');
+  } catch(e) {
+    showToast('Delete failed: ' + e.message, 'err');
+  }
+  pendingDeleteId = null;
+}
+
+// ── AUTH ──
+function openAdmin() {
+  var ov = document.getElementById('admOv');
+  ov.classList.add('open');
+  if (loggedIn) {
+    document.getElementById('loginPane').style.display = 'none';
+    document.getElementById('loggedPane').style.display = 'block';
+    renderMg();
+  } else {
+    document.getElementById('loginPane').style.display = 'block';
+    document.getElementById('loggedPane').style.display = 'none';
+  }
+}
+function closeAdmin() {
+  document.getElementById('admOv').classList.remove('open');
+}
+// Pure JS hash — works on local files, no HTTPS needed
+function simpleHash(str) {
+  var hash = 0x12345678;
+  for (var i = 0; i < str.length; i++) {
+    hash = ((hash << 5) ^ (hash >> 27) ^ str.charCodeAt(i)) >>> 0;
+    hash = (hash * 0x9e3779b9) >>> 0;
+  }
+  // second pass for avalanche
+  var h2 = 0xdeadbeef;
+  for (var j = 0; j < str.length; j++) {
+    h2 = ((h2 ^ str.charCodeAt(j)) * 0x45d9f3b) >>> 0;
+    h2 = ((h2 >> 16) ^ h2) >>> 0;
+  }
+  var combined = (hash ^ h2) >>> 0;
+  // stretch to 40-char hex using both halves
+  var a = combined.toString(16).padStart(8, '0');
+  var b = (hash ^ 0xc0ffee42).toString(16).padStart(8, '0');
+  var c = (h2 ^ 0x13571357).toString(16).padStart(8, '0');
+  var d = ((combined * 0x6b43) >>> 0).toString(16).padStart(8, '0');
+  var e = ((hash + h2) >>> 0).toString(16).padStart(8, '0');
+  return a + b + c + d + e;
+}
+
+function doLogin() {
+  var pw = document.getElementById('pwIn').value;
+  if (!pw) return;
+  var hash = simpleHash(pw);
+  if (hash === PASS_HASH) {
+    loggedIn = true;
+    document.getElementById('lErr').style.display = 'none';
+    document.getElementById('pwIn').value = '';
+    document.getElementById('loginPane').style.display = 'none';
+    document.getElementById('loggedPane').style.display = 'block';
+    document.getElementById('adminBtn').classList.add('on');
+    render(); renderMg();
+    showToast('Welcome back!', 'ok');
+  } else {
+    document.getElementById('lErr').style.display = 'block';
+    document.getElementById('pwIn').value = '';
+    document.getElementById('pwIn').focus();
+  }
+}
+function doLogout() {
+  loggedIn = false;
+  document.getElementById('adminBtn').classList.remove('on');
+  closeAdmin(); render();
+  showToast('Logged out.', 'ok');
+}
+
+// ── TOAST ──
+function showToast(msg, type) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast' + (type === 'err' ? ' err' : '');
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 3200);
+}
+
+// ── SMOOTH LINK TRANSITION ──
+function smoothNav(href) {
+  var el = document.getElementById('page-trans');
+  el.style.transition = 'opacity .3s';
+  el.classList.add('show');
+  setTimeout(function() {
+    window.location.href = href;
+  }, 320);
+}
+// Intercept external links for smooth out
+document.querySelectorAll('a[href^="http"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var href = this.href;
+    if (this.target === '_blank') return; // let _blank open normally
+    e.preventDefault();
+    smoothNav(href);
+  });
+});
+// Page in transition
+window.addEventListener('pageshow', function() {
+  var el = document.getElementById('page-trans');
+  el.style.transition = 'none';
+  el.classList.add('show');
+  setTimeout(function() {
+    el.style.transition = 'opacity .5s';
+    el.classList.remove('show');
+  }, 50);
+});
+
+// ── EVENT LISTENERS ──
+document.getElementById('loginBtn').addEventListener('click', doLogin);
+document.getElementById('pwIn').addEventListener('keydown', function(e) { if (e.key === 'Enter') doLogin(); });
+document.getElementById('logoutBtn').addEventListener('click', doLogout);
+document.getElementById('addBikeBtn').addEventListener('click', addBike);
+
+document.getElementById('tabAddBtn').addEventListener('click', function() {
+  document.getElementById('tabAddBtn').classList.add('on');
+  document.getElementById('tabManageBtn').classList.remove('on');
+  document.getElementById('tabPwBtn').classList.remove('on');
+  document.getElementById('tabAdd').style.display = 'block';
+  document.getElementById('tabManage').style.display = 'none';
+  document.getElementById('tabPw').style.display = 'none';
+});
+document.getElementById('tabManageBtn').addEventListener('click', function() {
+  document.getElementById('tabManageBtn').classList.add('on');
+  document.getElementById('tabAddBtn').classList.remove('on');
+  document.getElementById('tabPwBtn').classList.remove('on');
+  document.getElementById('tabManage').style.display = 'block';
+  document.getElementById('tabAdd').style.display = 'none';
+  document.getElementById('tabPw').style.display = 'none';
+  renderMg();
+});
+document.getElementById('tabPwBtn').addEventListener('click', function() {
+  document.getElementById('tabPwBtn').classList.add('on');
+  document.getElementById('tabAddBtn').classList.remove('on');
+  document.getElementById('tabManageBtn').classList.remove('on');
+  document.getElementById('tabPw').style.display = 'block';
+  document.getElementById('tabAdd').style.display = 'none';
+  document.getElementById('tabManage').style.display = 'none';
+});
+
+// ── PASSWORD STRENGTH CHECKER ──
+document.getElementById('pwGenIn').addEventListener('input', function() {
+  var pw = this.value;
+  var wrap = document.getElementById('pwStrengthWrap');
+  var bar = document.getElementById('pwStrengthBar');
+  var label = document.getElementById('pwStrengthLabel');
+  var tips = document.getElementById('pwStrengthTips');
+  if (!pw) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'block';
+  var score = 0;
+  var tipList = [];
+  if (pw.length >= 8) score++; else tipList.push('• Use at least 8 characters');
+  if (pw.length >= 12) score++;
+  if (/[A-Z]/.test(pw)) score++; else tipList.push('• Add an uppercase letter (A-Z)');
+  if (/[0-9]/.test(pw)) score++; else tipList.push('• Add a number (0-9)');
+  if (/[^A-Za-z0-9]/.test(pw)) score++; else tipList.push('• Add a symbol (@, #, !, etc.)');
+  var levels = [
+    { label: 'VERY WEAK', color: '#e74c3c', w: '15%' },
+    { label: 'WEAK',      color: '#e67e22', w: '30%' },
+    { label: 'FAIR',      color: '#f1c40f', w: '55%' },
+    { label: 'STRONG',    color: '#2ecc71', w: '80%' },
+    { label: 'VERY STRONG', color: '#00ff88', w: '100%' }
+  ];
+  var lv = levels[Math.min(score, 4)];
+  bar.style.width = lv.w;
+  bar.style.background = lv.color;
+  label.textContent = lv.label;
+  label.style.color = lv.color;
+  tips.textContent = tipList.join('  ');
+});
+
+// ── SHOW/HIDE PASSWORD TOGGLE ──
+document.getElementById('pwToggleBtn').addEventListener('click', function() {
+  var inp = document.getElementById('pwGenIn');
+  if (inp.type === 'password') { inp.type = 'text'; this.textContent = '🙈'; }
+  else { inp.type = 'password'; this.textContent = '👁'; }
+});
+
+// ── GENERATE HASH BUTTON ──
+document.getElementById('pwGenBtn').addEventListener('click', function() {
+  var pw = document.getElementById('pwGenIn').value.trim();
+  var pw2 = document.getElementById('pwGenConfirm').value.trim();
+  var errEl = document.getElementById('pwGenErr');
+  var resEl = document.getElementById('pwGenResult');
+  errEl.style.display = 'none';
+  resEl.style.display = 'none';
+  if (!pw) { errEl.textContent = '⚠ Please enter a password.'; errEl.style.display = 'block'; return; }
+  if (pw !== pw2) { errEl.textContent = '⚠ Passwords do not match.'; errEl.style.display = 'block'; return; }
+  if (pw.length < 6) { errEl.textContent = '⚠ Password too short — use at least 6 characters.'; errEl.style.display = 'block'; return; }
+  var hash = simpleHash(pw);
+  document.getElementById('pwHashOut').textContent = hash;
+  resEl.style.display = 'block';
+});
+
+// ── COPY HASH BUTTON ──
+document.getElementById('pwCopyBtn').addEventListener('click', function() {
+  var hash = document.getElementById('pwHashOut').textContent;
+  navigator.clipboard.writeText(hash).then(function() {
+    document.getElementById('pwCopyBtn').textContent = 'COPIED ✓';
+    setTimeout(function() { document.getElementById('pwCopyBtn').textContent = 'COPY'; }, 2000);
+  }).catch(function() {
+    // fallback for local files
+    var ta = document.createElement('textarea');
+    ta.value = hash;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    document.getElementById('pwCopyBtn').textContent = 'COPIED ✓';
+    setTimeout(function() { document.getElementById('pwCopyBtn').textContent = 'COPY'; }, 2000);
+  });
+});
+
+// File upload — multiple
+document.getElementById('pfIn').addEventListener('change', function(e) {
+  processFiles(e.target.files);
+});
+document.getElementById('uz').addEventListener('dragover', function(e) {
+  e.preventDefault(); this.classList.add('drag');
+});
+document.getElementById('uz').addEventListener('dragleave', function() {
+  this.classList.remove('drag');
+});
+document.getElementById('uz').addEventListener('drop', function(e) {
+  e.preventDefault(); this.classList.remove('drag');
+  processFiles(e.dataTransfer.files);
+});
+
+// Category filter
+document.getElementById('catTabs').addEventListener('click', function(e) {
+  var btn = e.target.closest('.ft');
+  if (!btn) return;
+  document.querySelectorAll('#catTabs .ft').forEach(function(t) { t.classList.remove('on'); });
+  btn.classList.add('on');
+  filterCat = btn.getAttribute('data-cat');
+  render();
+});
+
+// Price filter
+document.getElementById('priceTabs').addEventListener('click', function(e) {
+  var btn = e.target.closest('.ft');
+  if (!btn) return;
+  document.querySelectorAll('#priceTabs .ft').forEach(function(t) { t.classList.remove('on'); });
+  btn.classList.add('on');
+  filterPrice = btn.getAttribute('data-price');
+  render();
+});
+
+// Bike grid events (gallery arrows, dots, lightbox, enquire, delete)
+document.getElementById('bikesGrid').addEventListener('click', function(e) {
+  // Gallery arrow
+  var arrow = e.target.closest('.g-arrow');
+  if (arrow) {
+    e.stopPropagation();
+    var id = arrow.getAttribute('data-id');
+    var dir = parseInt(arrow.getAttribute('data-dir'), 10);
+    var cur = getGalleryState(id);
+    setGallerySlide(id, cur + dir);
+    return;
+  }
+  // Dot
+  var dot = e.target.closest('.g-dot');
+  if (dot) {
+    e.stopPropagation();
+    var gallery = dot.closest('[data-gallery-id]');
+    if (gallery) {
+      var gid = gallery.getAttribute('data-gallery-id');
+      var idx = parseInt(dot.getAttribute('data-idx'), 10);
+      setGallerySlide(gid, idx);
+    }
+    return;
+  }
+  // Admin delete
+  var delBtn = e.target.closest('.bc-del');
+  if (delBtn) {
+    var delId = delBtn.getAttribute('data-id');
+    openAdmin();
+    document.getElementById('tabManageBtn').classList.add('on');
+    document.getElementById('tabAddBtn').classList.remove('on');
+    document.getElementById('tabManage').style.display = 'block';
+    document.getElementById('tabAdd').style.display = 'none';
+    renderMg();
+    setTimeout(function() { showConfirm(delId); }, 80);
+    return;
+  }
+  // Enquire
+  var enqBtn = e.target.closest('.bc-enq');
+  if (enqBtn) {
+    showToast('Enquiry noted for ' + enqBtn.getAttribute('data-name') + '!', 'ok');
+    return;
+  }
+  // Click on gallery image → open lightbox
+  var galleryEl = e.target.closest('.bc-gallery');
+  if (galleryEl && e.target.tagName === 'IMG') {
+    var gBikeId = galleryEl.getAttribute('data-gallery-id');
+    var curSlide = getGalleryState(gBikeId);
+    openLightbox(gBikeId, curSlide);
+    return;
+  }
+});
+
+// Manage list delete
+document.getElementById('mgList').addEventListener('click', function(e) {
+  var btn = e.target.closest('.mg-del');
+  if (btn) showConfirm(btn.getAttribute('data-id'));
+});
+
+// Close admin on backdrop
+document.getElementById('admOv').addEventListener('click', function(e) {
+  if (e.target === this) closeAdmin();
+});
+
+// Nav scroll shadow
+window.addEventListener('scroll', function() {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Scroll fade animations
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(en, i) {
+    if (en.isIntersecting) {
+      setTimeout(function() { en.target.classList.add('in'); }, i * 60);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade').forEach(function(el) { obs.observe(el); });
+
+// ── INIT — load from Supabase ──
+loadFromSupabase();
+
+</script>
+</body>
+</html>
