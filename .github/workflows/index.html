@@ -13,6 +13,35 @@
   --muted:#6e6e6e;--green:#22c55e;--red:#ef4444;
   --fd:'Bebas Neue',sans-serif;--fc:'Barlow Condensed',sans-serif;--fb:'Barlow',sans-serif;
 }
+body.light-theme{
+  --black:#f5f2ee;--dark:#eae6e0;--steel:#dedad4;--iron:#d0cbc4;--border:#c2bdb6;
+  --chrome:#555;--white:#1a1a1a;--muted:#666;
+}
+body.light-theme nav{background:rgba(245,242,238,.97)}
+body.light-theme .bc{background:#eae6e0}
+body.light-theme .cf input,body.light-theme .cf select,body.light-theme .cf textarea,
+body.light-theme .fi2,body.light-theme .fs2{background:#dedad4;color:#1a1a1a}
+body.light-theme .adm-ov .adm-modal{background:#eae6e0}
+body.light-theme .scs{background:linear-gradient(135deg,#e8ecf5,#eaeef8)}
+
+/* ── THEME TOGGLE ── */
+.theme-toggle{position:relative;width:58px;height:28px;cursor:pointer;flex-shrink:0}
+.theme-toggle input{opacity:0;width:0;height:0;position:absolute}
+.theme-track{display:flex;align-items:center;justify-content:space-between;padding:0 6px;width:100%;height:100%;background:var(--iron);border:1px solid var(--border);border-radius:20px;transition:all .35s;position:relative;overflow:hidden}
+.theme-track::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;background:var(--orange);border-radius:50%;transition:transform .35s cubic-bezier(.34,1.56,.64,1),background .35s;box-shadow:0 2px 8px rgba(255,77,0,.4)}
+.theme-toggle input:checked+.theme-track{background:#e8eaf0;border-color:#c5cad6}
+.theme-toggle input:checked+.theme-track::after{transform:translateX(30px);background:#f5a623;box-shadow:0 2px 8px rgba(245,166,35,.5)}
+.theme-icon{font-size:.7rem;z-index:1;line-height:1;transition:opacity .25s}
+.theme-icon.moon{opacity:1}
+.theme-icon.sun{opacity:.4}
+.theme-toggle input:checked+.theme-track .theme-icon.moon{opacity:.4}
+.theme-toggle input:checked+.theme-track .theme-icon.sun{opacity:1}
+
+/* ── CALL FLOAT BUTTON ── */
+.call-float{position:fixed;bottom:32px;left:190px;z-index:999;display:flex;align-items:center;gap:10px;background:#1a6bff;color:#fff;padding:13px 20px 13px 16px;border-radius:50px;box-shadow:0 6px 24px rgba(26,107,255,.45);text-decoration:none;font-family:var(--fc);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;transition:all .28s;animation:callPulse 2.5s infinite 1.25s}
+.call-float:hover{background:#1558d4;transform:translateY(-3px);box-shadow:0 10px 32px rgba(26,107,255,.6)}
+.call-float svg{width:22px;height:22px;flex-shrink:0}
+@keyframes callPulse{0%,100%{box-shadow:0 6px 24px rgba(26,107,255,.45)}50%{box-shadow:0 6px 32px rgba(26,107,255,.78)}}
 html{scroll-behavior:smooth}
 body{background:var(--black);color:var(--white);font-family:var(--fb);overflow-x:hidden}
 img{display:block}
@@ -23,7 +52,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 ::-webkit-scrollbar-thumb{background:var(--iron)}
 ::-webkit-scrollbar-thumb:hover{background:var(--orange)}
 
-/* ── PAGE TRANSITION OVERLAY ── */
+/* ── FLOATING WHATSAPP BUTTON ── */
+.wa-float{position:fixed;bottom:32px;left:32px;z-index:999;display:flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:13px 20px 13px 16px;border-radius:50px;box-shadow:0 6px 24px rgba(37,211,102,.45);text-decoration:none;font-family:var(--fc);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;transition:all .28s;animation:waPulse 2.5s infinite}
+.wa-float:hover{background:#1ebe5d;transform:translateY(-3px);box-shadow:0 10px 32px rgba(37,211,102,.55)}
+.wa-float svg{width:22px;height:22px;flex-shrink:0}
+@keyframes waPulse{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.45)}50%{box-shadow:0 6px 32px rgba(37,211,102,.75)}}
 #page-trans{position:fixed;inset:0;z-index:9000;background:var(--black);pointer-events:none;opacity:0;transition:opacity .35s ease}
 #page-trans.show{opacity:1;pointer-events:all}
 
@@ -134,7 +167,7 @@ nav.scrolled{box-shadow:0 4px 40px rgba(0,0,0,.6)}
 .bc-body{padding:20px 22px;border-top:1px solid var(--border)}
 .bc-brand{font-family:var(--fc);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--orange);margin-bottom:4px}
 .bc-name{font-family:var(--fd);font-size:1.52rem;letter-spacing:.04em;margin-bottom:10px;line-height:1}
-.bc-specs{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:16px;font-family:var(--fc);font-size:.65rem;letter-spacing:.07em;color:var(--muted);text-transform:uppercase}
+.bc-specs{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:16px;font-family:var(--fc);font-size:.78rem;letter-spacing:.07em;color:var(--muted);text-transform:uppercase}
 .bc-bot{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .bc-price{font-family:var(--fd);font-size:1.55rem;line-height:1}
 .bc-old{font-family:var(--fc);font-size:.8rem;color:var(--muted);text-decoration:line-through;margin-left:7px}
@@ -336,6 +369,13 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:60px 5
   .lb-arr{width:36px;height:36px;font-size:1rem}
   .lb-arr.prev{left:8px}
   .lb-arr.next{right:8px}
+  #fbHeroBadge{top:180px !important;right:18px !important}
+}
+@media(min-width:601px){
+  .wa-float{left:50%;transform:translateX(-220px)}
+  .wa-float:hover{transform:translateX(-220px) translateY(-3px)}
+  .call-float{left:50%;transform:translateX(10px)}
+  .call-float:hover{transform:translateX(10px) translateY(-3px)}
 }
 </style>
 </head>
@@ -367,7 +407,14 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:60px 5
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <a href="https://scsghatal.github.io/SCS/" target="_blank" class="nav-scs">SCS Ghatal ↗</a>
+    <label class="theme-toggle" title="Toggle Dark / Light Theme">
+      <input type="checkbox" id="themeToggle">
+      <div class="theme-track">
+        <span class="theme-icon moon">🌙</span>
+        <span class="theme-icon sun">☀️</span>
+      </div>
+    </label>
+    <a href="https://scsghatal.github.io/scs/" target="_blank" class="nav-scs">SCS Ghatal ↗</a>
     <button class="nav-adm" id="adminBtn" onclick="openAdmin()">⚙ Admin</button>
   </div>
 </nav>
@@ -376,6 +423,12 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:60px 5
 <section class="hero">
   <div class="h-grid"></div>
   <div class="h-glow"></div>
+  <a href="FACEBOOK_LINK_HERE" target="_blank" id="fbHeroBadge" title="Follow us on Facebook" style="position:absolute;top:100px;right:52px;z-index:10;display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;animation:fadeUp .8s .5s both;transition:transform .3s" onmouseover="this.style.transform='scale(1.12)'" onmouseout="this.style.transform='scale(1)'">
+    <div style="width:54px;height:54px;background:#1877F2;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px rgba(24,119,242,.25),0 0 24px rgba(24,119,242,.35);transition:box-shadow .3s" onmouseover="this.style.boxShadow='0 0 0 5px rgba(24,119,242,.4),0 0 36px rgba(24,119,242,.55)'" onmouseout="this.style.boxShadow='0 0 0 3px rgba(24,119,242,.25),0 0 24px rgba(24,119,242,.35)'">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </div>
+    <span style="font-family:var(--fc);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45)">Follow Us</span>
+  </a>
   <div class="h-content">
     <div class="h-eye">Ghatal, West Bengal — Pre-Owned Motorcycles</div>
     <h1 class="h-title">FIND YOUR<br><span class="o">PERFECT</span><br><span class="s">RIDE</span></h1>
@@ -507,7 +560,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:60px 5
       </div>
     </div>
     <div class="scs-right">
-      <a href="https://scsghatal.github.io/SCS/" target="_blank" rel="noopener" class="scs-btn">VISIT SCS GHATAL ↗</a>
+      <a href="https://scsghatal.github.io/scs/" target="_blank" rel="noopener" class="scs-btn">VISIT SCS GHATAL ↗</a>
       <p class="scs-note">Ghatal, West Bengal · <span>15+ Years Experience</span></p>
     </div>
   </div>
@@ -520,40 +573,23 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:60px 5
       <div class="ey">Get In Touch</div>
       <h2 class="st">VISIT OUR<br><span class="s">SHOWROOM</span></h2>
       <div class="c-info">
-        <div class="ci"><div class="ci-ic">📍</div><div><div class="ci-l">Showroom Address</div><div class="ci-v">Ghatal, West Bengal, India</div></div></div>
-        <div class="ci"><div class="ci-ic">📞</div><div><div class="ci-l">Call / WhatsApp</div><div class="ci-v">+91 XXXXX XXXXX</div></div></div>
+        <div class="ci"><div class="ci-ic">📍</div><div><div class="ci-l">Showroom Address</div><div class="ci-v"><a href="https://www.google.com/maps?q=SB_RIDES,Ghatal,WestBengal" target="_blank" onclick="window.open('https://www.google.com/maps/place/SB_RIDES/@22.6650853,87.7292573,17z','_blank');return false;" style="color:var(--white);text-decoration:none;transition:color .2s;cursor:pointer" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--white)'">Ghatal, West Bengal, India ↗</a></div></div></div>
+        <div class="ci"><div class="ci-ic">📞</div><div><div class="ci-l">Call Us</div><div class="ci-v"><a href="tel:+919647044663" style="color:var(--white);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--white)'">+91 96470 44663</a></div></div></div>
+        <div class="ci"><div class="ci-ic" style="color:#25D366;font-size:1.3rem">💬</div><div><div class="ci-l">WhatsApp</div><div class="ci-v"><a href="https://wa.me/919475336021" target="_blank" style="color:#25D366;text-decoration:none;font-weight:500;transition:opacity .2s" onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'">+91 94753 36021 — Chat Now ↗</a></div></div></div>
         <div class="ci"><div class="ci-ic">🕐</div><div><div class="ci-l">Working Hours</div><div class="ci-v">Open Every Day<br>10:00 AM – 8:00 PM</div></div></div>
       </div>
       <div class="open-badge"><div class="od"></div>Open Today · 10 AM – 8 PM</div>
-    </div>
-    <div class="fade">
-      <div class="cf">
-        <div class="frow">
-          <div><label>Your Name</label><input type="text" placeholder="Rahul Kumar"></div>
-          <div><label>Phone Number</label><input type="tel" placeholder="+91 98765 43210"></div>
+      <!-- GOOGLE MAPS EMBED -->
+      <div style="margin-top:28px;border:1px solid var(--border);overflow:hidden;position:relative">
+        <div style="font-family:var(--fc);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);padding:10px 14px;background:var(--steel);border-bottom:1px solid var(--border)">📍 Find Us On Map — Click To Open In Google Maps</div>
+        <a href="https://maps.app.goo.gl/SBRidesGhatal" target="_blank" onclick="window.open('https://www.google.com/maps/place/SB_RIDES/@22.6650853,87.7292573,17z','_blank');return false;" style="display:block;position:relative">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3998.092772435504!2d87.72925731119787!3d22.66508527934011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8094113eb29d7%3A0x75d3522649198832!2sSB_RIDES!5e1!3m2!1sen!2sin!4v1776769422165!5m2!1sen!2sin" width="100%" height="280" style="border:0;display:block;pointer-events:none" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div style="position:absolute;inset:0;cursor:pointer;z-index:2"></div>
+        </a>
+        <div style="padding:10px 14px;background:var(--steel);border-top:1px solid var(--border);font-family:var(--fc);font-size:.65rem;letter-spacing:.1em;color:var(--muted);display:flex;justify-content:space-between;align-items:center">
+          <span>SB Rides, Ghatal, West Bengal, India</span>
+          <a href="#" onclick="window.open('https://www.google.com/maps/place/SB_RIDES/@22.6650853,87.7292573,17z','_blank');return false;" style="color:var(--orange);text-decoration:none;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase">Open In Maps ↗</a>
         </div>
-        <div><label>Interested In</label>
-          <select>
-            <option>Any bike — show me options</option>
-            <option>Royal Enfield Classic 350</option>
-            <option>KTM Duke 200 / 390</option>
-            <option>Bajaj Pulsar Series</option>
-            <option>Honda CB / CBR Series</option>
-            <option>Yamaha R15 / MT Series</option>
-            <option>Other (mention below)</option>
-          </select>
-        </div>
-        <div><label>Budget (₹)</label>
-          <select>
-            <option>Below ₹20,000</option>
-            <option>₹20,000 – ₹30,000</option>
-            <option>₹30,000 – ₹40,000</option>
-            <option>₹40,000 – ₹50,000</option>
-            <option>Above ₹50,000</option>
-          </select>
-        </div>
-        <div><label>Message (Optional)</label><textarea placeholder="Tell us your preferred brand, riding style, budget…"></textarea></div>
-        <button class="c-sub" onclick="showToast('Enquiry sent! We will contact you soon.','ok')">SEND ENQUIRY →</button>
       </div>
     </div>
   </div>
@@ -566,6 +602,21 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:60px 5
       <div class="f-logo">SB<span>RIDE</span></div>
       <p class="f-about">Your trusted destination for quality pre-owned motorcycles in Ghatal, West Bengal. Personally inspected, fairly priced, properly documented.</p>
       <p class="f-hours">📍 Ghatal, West Bengal · Open Every Day · 10 AM – 8 PM</p>
+      <p class="f-hours" style="margin-top:8px">📞 <a href="tel:+919647044663" style="color:var(--chrome);text-decoration:none">+91 96470 44663</a></p>
+      <p class="f-hours" style="margin-top:4px">💬 <a href="https://wa.me/919475336021" target="_blank" style="color:#25D366;text-decoration:none">WhatsApp: +91 94753 36021</a></p>
+      <!-- SOCIAL LINKS -->
+      <div style="margin-top:20px;display:flex;gap:10px;align-items:center">
+        <div style="font-family:var(--fc);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-right:4px">Follow Us</div>
+        <!-- FACEBOOK -->
+        <a href="FACEBOOK_LINK_HERE" target="_blank" id="fbLink" style="display:flex;align-items:center;gap:8px;background:#1877F2;color:#fff;padding:8px 14px;border-radius:6px;text-decoration:none;font-family:var(--fc);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;transition:all .25s;border:2px solid #1877F2" onmouseover="this.style.background='transparent';this.style.color='#1877F2'" onmouseout="this.style.background='#1877F2';this.style.color='#fff'">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </a>
+        <!-- WHATSAPP SOCIAL -->
+        <a href="https://wa.me/919475336021" target="_blank" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:#25D366;color:#fff;border-radius:6px;text-decoration:none;transition:all .25s;flex-shrink:0" onmouseover="this.style.background='#1ebe5d';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#25D366';this.style.transform='none'">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.857L.057 23.428a.75.75 0 00.918.943l5.71-1.498A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.717 9.717 0 01-4.953-1.355l-.355-.211-3.688.968.984-3.595-.232-.371A9.718 9.718 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+        </a>
+      </div>
     </div>
     <div>
       <div class="f-ct">Quick Links</div>
@@ -588,11 +639,11 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:60px 5
     <div>
       <div class="f-ct">Sister Business</div>
       <ul class="f-ul">
-        <li><a href="https://scsghatal.github.io/SCS/" target="_blank" class="bl">↗ SCS Ghatal</a></li>
-        <li><a href="https://scsghatal.github.io/SCS/" target="_blank" class="bl">Driving Licence</a></li>
-        <li><a href="https://scsghatal.github.io/SCS/" target="_blank" class="bl">Ownership Transfer</a></li>
-        <li><a href="https://scsghatal.github.io/SCS/" target="_blank" class="bl">Vehicle Registration</a></li>
-        <li><a href="https://scsghatal.github.io/SCS/" target="_blank" class="bl">Insurance (12% Off)</a></li>
+        <li><a href="https://scsghatal.github.io/scs/" target="_blank" class="bl">↗ SCS Ghatal</a></li>
+        <li><a href="https://scsghatal.github.io/scs/" target="_blank" class="bl">Driving Licence</a></li>
+        <li><a href="https://scsghatal.github.io/scs/" target="_blank" class="bl">Ownership Transfer</a></li>
+        <li><a href="https://scsghatal.github.io/scs/" target="_blank" class="bl">Vehicle Registration</a></li>
+        <li><a href="https://scsghatal.github.io/scs/" target="_blank" class="bl">Insurance (12% Off)</a></li>
       </ul>
     </div>
   </div>
@@ -613,10 +664,33 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:60px 5
       </div>
       <div class="adm-b">
         <p class="l-hint">Enter the admin password to add new bikes or remove sold ones from the inventory.</p>
-        <div class="fg"><label class="fl2">Password</label><input class="fi2" type="password" id="pwIn" placeholder="Enter password…"></div>
+        <div class="fg"><label class="fl2">Password</label><div style="position:relative;display:flex;align-items:center"><input class="fi2" type="password" id="pwIn" placeholder="Enter password…" style="width:100%;padding-right:44px"><button type="button" onclick="var i=document.getElementById('pwIn');i.type=i.type==='password'?'text':'password';this.innerHTML=i.type==='password'?'<svg width=16 height=16 viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\'><path d=\'M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z\'/><circle cx=\'12\' cy=\'12\' r=\'3\'/></svg>':'<svg width=16 height=16 viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\'><path d=\'M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24\'/><line x1=\'1\' y1=\'1\' x2=\'23\' y2=\'23\'/></svg>'" style="position:absolute;right:12px;background:none;border:none;cursor:pointer;color:var(--muted);display:flex;align-items:center;padding:0;transition:color .2s;line-height:1" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--muted)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
         <div class="l-err" id="lErr">Incorrect password. Try again.</div>
         <button class="adm-sub" id="loginBtn">LOGIN →</button>
-        <p class="pw-note">To change password, see instructions in the source code.</p>
+        <p class="pw-note" style="display:flex;justify-content:space-between;align-items:center">
+          <span>To change password, see the instructions.</span>
+          <button onclick="openForgot()" style="background:none;border:none;font-family:var(--fc);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px;transition:opacity .2s" onmouseover="this.style.opacity='.65'" onmouseout="this.style.opacity='1'">Forgot Password?</button>
+        </p>
+
+        <!-- FORGOT PASSWORD OVERLAY -->
+        <div id="forgotBox" style="display:none;margin-top:18px;background:var(--steel);border:1px solid var(--border);padding:20px;animation:fadeUp .3s both">
+          <div style="font-family:var(--fc);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
+            <span>🔐 Verify Identity</span>
+            <button onclick="closeForgot()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;line-height:1;padding:0;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--muted)'">✕</button>
+          </div>
+          <p style="font-size:.8rem;color:var(--muted);margin-bottom:14px;line-height:1.65">Enter your registered phone number to verify your identity and reveal the password hint.</p>
+          <div class="fg" style="margin-bottom:10px">
+            <label class="fl2">Phone Number</label>
+            <input class="fi2" type="tel" id="forgotPhone" placeholder="Enter your phone number…" style="letter-spacing:.06em">
+          </div>
+          <div id="forgotErr" style="font-family:var(--fc);font-size:.65rem;letter-spacing:.13em;text-transform:uppercase;color:var(--red);display:none;margin-bottom:10px">❌ Phone number not recognised.</div>
+          <button onclick="verifyForgot()" style="width:100%;font-family:var(--fd);font-size:.95rem;letter-spacing:.15em;color:var(--black);background:var(--orange);border:2px solid var(--orange);padding:11px 0;cursor:pointer;transition:all .28s" onmouseover="this.style.background='transparent';this.style.color='var(--orange)'" onmouseout="this.style.background='var(--orange)';this.style.color='var(--black)'">VERIFY →</button>
+          <!-- Hint reveal -->
+          <div id="forgotHint" style="display:none;margin-top:16px;background:rgba(255,77,0,.07);border:1px solid rgba(255,77,0,.3);padding:14px 16px;animation:fadeUp .35s both">
+            <div style="font-family:var(--fc);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin-bottom:6px">✅ Identity Verified — Your Hint</div>
+            <div style="font-family:var(--fd);font-size:1.25rem;letter-spacing:.06em;color:var(--white);word-break:break-all" id="hintText"></div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- LOGGED IN -->
@@ -729,12 +803,24 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:60px 5
   </div>
 </div>
 
+<!-- FLOATING WHATSAPP BUTTON -->
+<a href="https://wa.me/919475336021" target="_blank" class="wa-float" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.857L.057 23.428a.75.75 0 00.918.943l5.71-1.498A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.717 9.717 0 01-4.953-1.355l-.355-.211-3.688.968.984-3.595-.232-.371A9.718 9.718 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+  WhatsApp Us
+</a>
+
+<!-- FLOATING CALL BUTTON -->
+<a href="tel:+919475336021" class="call-float">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"/></svg>
+  Call Us
+</a>
+
 <script>
 // ── SUPABASE CONFIG ──
-var SB_URL = 'https://fxahdyolxmpbllpecvwa.supabase.co';
-var SB_KEY = 'sb_publishable_nchzIiOpIYTTv1OnlkbXQg_ejptlMAH';
+var SB_URL = [104,116,116,112,115,58,47,47,102,120,97,104,100,121,111,108,120,109,112,98,108,108,112,101,99,118,119,97,46,115,117,112,97,98,97,115,101,46,99,111].map(function(c){return String.fromCharCode(c)}).join('');
+var SB_KEY = [115,98,95,112,117,98,108,105,115,104,97,98,108,101,95,110,99,104,122,73,105,79,112,73,89,84,84,118,49,79,110,108,107,98,88,81,103,95,101,106,112,116,108,77,65,72].map(function(c){return String.fromCharCode(c)}).join('');
 var SB_BUCKET = 'bike-photos';
-var PASS_HASH = 'de8323054ae6924247cd4c520bf5414fdeb3db05'; // = admin123
+var PASS_HASH = '821a61ea4419544215abc8bd13d46e3e8be395ea';
 var bikes = [];
 var pendingPhotos = []; // array of {file, preview} objects
 var filterCat = 'All';
@@ -1234,7 +1320,7 @@ function simpleHash(str) {
   var combined = (hash ^ h2) >>> 0;
   // stretch to 40-char hex using both halves
   var a = combined.toString(16).padStart(8, '0');
-  var b = (hash ^ 0xc0ffee42).toString(16).padStart(8, '0');
+  var b = ((hash ^ 0xc0ffee42) >>> 0).toString(16).padStart(8, '0');
   var c = (h2 ^ 0x13571357).toString(16).padStart(8, '0');
   var d = ((combined * 0x6b43) >>> 0).toString(16).padStart(8, '0');
   var e = ((hash + h2) >>> 0).toString(16).padStart(8, '0');
@@ -1308,6 +1394,9 @@ window.addEventListener('pageshow', function() {
 // ── EVENT LISTENERS ──
 document.getElementById('loginBtn').addEventListener('click', doLogin);
 document.getElementById('pwIn').addEventListener('keydown', function(e) { if (e.key === 'Enter') doLogin(); });
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && document.getElementById('forgotPhone') === document.activeElement) verifyForgot();
+});
 document.getElementById('logoutBtn').addEventListener('click', doLogout);
 document.getElementById('addBikeBtn').addEventListener('click', addBike);
 
@@ -1525,6 +1614,50 @@ var obs = new IntersectionObserver(function(entries) {
 document.querySelectorAll('.fade').forEach(function(el) { obs.observe(el); });
 
 // ── INIT — load from Supabase ──
+// ── FORGOT PASSWORD ──
+var PHONE_HASH = 'e6dc49367ac2a2424fb616617e40bb22171e5136';
+var HINT_ENC   = [120,121,125,116,112,123,119,7,31,26,19,29,30];
+function openForgot() {
+  document.getElementById('forgotBox').style.display = 'block';
+  document.getElementById('forgotErr').style.display = 'none';
+  document.getElementById('forgotHint').style.display = 'none';
+  document.getElementById('forgotPhone').value = '';
+  setTimeout(function(){ document.getElementById('forgotPhone').focus(); }, 80);
+}
+function closeForgot() {
+  document.getElementById('forgotBox').style.display = 'none';
+}
+function verifyForgot() {
+  var phone = document.getElementById('forgotPhone').value.trim().replace(/\s+/g,'');
+  var hash = simpleHash(phone);
+  if (hash === PHONE_HASH) {
+    document.getElementById('forgotErr').style.display = 'none';
+    var dec = HINT_ENC.map(function(b,i){ return String.fromCharCode(b ^ phone.charCodeAt(i % phone.length)); }).join('');
+    document.getElementById('hintText').textContent = dec;
+    document.getElementById('forgotHint').style.display = 'block';
+  } else {
+    document.getElementById('forgotErr').style.display = 'block';
+    document.getElementById('forgotHint').style.display = 'none';
+  }
+}
+
+(function(){var FL='FACEBOOK_LINK_HERE';if(FL&&FL!=='FACEBOOK_LINK_HERE'){document.querySelectorAll('#fbLink,#fbHeroBadge').forEach(function(e){e.href=FL;})}})();
+// ── THEME TOGGLE ──
+(function() {
+  var toggle = document.getElementById('themeToggle');
+  var saved = localStorage.getItem('sbride-theme');
+  if (saved === 'light') { document.body.classList.add('light-theme'); toggle.checked = true; }
+  toggle.addEventListener('change', function() {
+    if (this.checked) {
+      document.body.classList.add('light-theme');
+      localStorage.setItem('sbride-theme', 'light');
+    } else {
+      document.body.classList.remove('light-theme');
+      localStorage.setItem('sbride-theme', 'dark');
+    }
+  });
+})();
+
 loadFromSupabase();
 
 </script>
